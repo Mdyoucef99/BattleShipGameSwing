@@ -21,42 +21,58 @@ public abstract class StrategieOrdiAbstrait implements InterfaceStrategie  {
 	// Retient les coups joués dans une collection.
 	private Vector<Coord> tabTirsJoues =  new Vector<Coord> ();
 
+
    // Cinq méthodes à écrire (voir énoncé).
 
+
+	//Fonction  qui s'occupe de retourner une coordonner qui n'est aps deja ajouter dans la collection TabtirJoues
 	public  Coord obtenirTirPasDejaJoue()
 	{
-
-		return null;
+		Coord c = UtilitaireCollection.obtenirCoupPasDejaJouer(tabTirsJoues);
+		return c;
 
 	}
 
-
+/*
+ * Fonction qui ajoute un tir dans la collection tabTirsJoues
+ *
+ * */
 	public void ajouterTir(Coord tir)
 	{
+		tabTirsJoues.add(tir);
 
 	}
 
 
-
+	/*
+	 * Fonction qui retoune un boolean si la la collection contient la coordonner tir
+	 *
+	 * */
 public boolean tirDejaJoue(Coord tir)
 {
-	return false;
+
+	return UtilitaireCollection.collectionContientCoord(tabTirsJoues, tir);
+
+
 }
 
-
+/*'
+ * Fonction qui retoune le dernier tir dans la collection tabTirsJoues
+ * */
 public Coord getDernierTir()
 {
-
-	return null;
+	return  tabTirsJoues.lastElement();
 
 }
 
-
+/*'
+ * Fonction qui vide la collection tabTirsJoues
+ *
+ * */
 @Override
 public void resetTirsJoues()
 {
-
-
+	tabTirsJoues.clear();
 }
 
 
