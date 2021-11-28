@@ -1,25 +1,25 @@
 package pack;
 import java.util.Vector;
 /**
- * Classe qui représente un joueur d'une partie de bataille navale
+ * Classe qui reprï¿½sente un joueur d'une partie de bataille navale
  * 
- * Le joueur a un nom, une flotte et retient les tirs qu'il a effectués.
+ * Le joueur a un nom, une flotte et retient les tirs qu'il a effectuï¿½s.
  * 
- * @author Pierre Bélisle
+ * @author Pierre Bï¿½lisle
  * @version Copyright A2021
  */
 public class Joueur extends Participant{
 
 	/*
-	 * Stratégie : On conserve les tirs dans un vecteur et les tâches sont 
-	 * déléguées à l'utilitaire de collections.
+	 * Stratï¿½gie : On conserve les tirs dans un vecteur et les tï¿½ches sont 
+	 * dï¿½lï¿½guï¿½es ï¿½ l'utilitaire de collections.
 	 */
 	private String nom;
 	
 	/**
 	 * Constructeur par copie de l'attribut nom.
 	 * 
-	 * Un flotte aléatoire et aucun tirs joués.
+	 * Un flotte alï¿½atoire et aucun tirs jouï¿½s.
 	 * 
 	 * @param nom
 	 */
