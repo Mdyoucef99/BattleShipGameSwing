@@ -1,42 +1,46 @@
 package pack;
 
-public class Participant  implements InterfaceParticipant
+public class Participant extends Flotte implements InterfaceParticipant
 {
 
 	@Override
-	public void genereNouvelleFlotte() {
-		// TODO Auto-generated method stub
-
+	public Flotte getFlotte()
+	{
+		return super.clone();
 	}
 
-	@Override
-	public Flotte getFlotte() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
-	public boolean flotteARecuTirQuiATouche(Coord tir) {
-		// TODO Auto-generated method stub
-		return false;
+	public void genereNouvelleFlotte()
+	{
+		super.obtenirFlotteAleatoire();
 	}
+
+
+	@Override
+	public boolean flotteARecuTirQuiATouche(Coord tir)
+	{
+		return super.dejaRecuCoup(tir);
+	}
+
 
 	@Override
 	public boolean jeuEstTermine() {
-		// TODO Auto-generated method stub
-		return false;
+
+		return super.jeuEstTermine();
 	}
 
 	@Override
-	public String getDernierNavireCoule() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getDernierNavireCoule()
+	{
+		return super.getDernierNavireCoule();
 	}
+
 
 	@Override
 	public boolean dernierTirACoule() {
-		// TODO Auto-generated method stub
-		return false;
+
+		return super.dernierTirACoule();
 	}
 
 
