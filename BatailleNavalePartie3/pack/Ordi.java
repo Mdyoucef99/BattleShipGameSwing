@@ -1,7 +1,6 @@
 package pack;
 
-public class Ordi implements InterfaceOrdi {
-
+public class Ordi extends Participant implements InterfaceOrdi {
 
 	public Ordi()
 	{
@@ -19,7 +18,6 @@ public class Ordi implements InterfaceOrdi {
 		// TODO Auto-generated method stub
 
 	}
-
 
 
 }
