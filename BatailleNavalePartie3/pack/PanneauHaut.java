@@ -11,16 +11,13 @@ public class PanneauHaut extends JPanel {
 	 public JPanel paneau2;
 	 public JPanel paneau3;
 
-	 Participant ordi;
-	 Participant joueur;
 
 	/**
 	 * Create the panel.
 	 */
 
-	public PanneauHaut(Participant ordi, Participant joueur)
+	public PanneauHaut()
 	{
-
 		initializeComponent();
 	}
 
@@ -29,7 +26,6 @@ public class PanneauHaut extends JPanel {
 	public void initializeComponent()
 	{
 		 Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-
 
 		 paneau1 = new PanneauGrilleGui(d);
 		 paneau2 = new PanneauGrilleGui(d);

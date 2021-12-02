@@ -12,9 +12,9 @@ public class PanneauPrincipal extends JPanel {
 
 	PanneauBas panneauBas;
 
-	Joueur joueur = new Joueur("empty");
+	Joueur joueur;
 
-	Ordi ordi = new Ordi();
+	Ordi ordi;
 
 
 	public PanneauPrincipal() {
