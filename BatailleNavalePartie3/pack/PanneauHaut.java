@@ -7,16 +7,17 @@ import javax.swing.JPanel;
 
 public class PanneauHaut extends JPanel {
 
-	 public JPanel paneau1;
-	 public JPanel paneau2;
-	 public JPanel paneau3;
+	 public PanneauGrilleGui paneauJoueur;
+	 public PanneauGrilleGui paneauOrdi;
+	 public PanneauGrilleGui paneauFlotteOrdi;
+
 
 
 	/**
 	 * Create the panel.
 	 */
 
-	public PanneauHaut()
+	public PanneauHaut(Participant Ordi,Participant joueur)
 	{
 		initializeComponent();
 	}
@@ -27,9 +28,13 @@ public class PanneauHaut extends JPanel {
 	{
 		 Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-		 paneau1 = new PanneauGrilleGui(d);
-		 paneau2 = new PanneauGrilleGui(d);
-		 paneau3 = new PanneauGrilleGui(d);
+/*
+ * 	     paneauJoueur = new PanneauGrilleGui(d);
+		 paneauOrdi = new PanneauGrilleGui(d);
+		 paneauFlotteOrdi = new PanneauGrilleGui(d);
+ * */
+
+
 
 	}
 
