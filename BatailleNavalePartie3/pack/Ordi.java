@@ -2,21 +2,24 @@ package pack;
 
 public class Ordi extends Participant implements InterfaceOrdi {
 
+	InterfaceStrategie strategieordi = null;
+
 	public Ordi()
 	{
-
+		super.genereNouvelleFlotte();
+		strategieordi = new OrdiStrategieDebutant();
 	}
 
 	@Override
-	public InterfaceStrategie getStrategie() {
-		// TODO Auto-generated method stub
-		return null;
+	public InterfaceStrategie getStrategie()
+	{
+		return strategieordi;
 	}
 
 	@Override
 	public void setStrategie(InterfaceStrategie strategie) {
-		// TODO Auto-generated method stub
 
+		strategieordi = strategie;
 	}
 
 
