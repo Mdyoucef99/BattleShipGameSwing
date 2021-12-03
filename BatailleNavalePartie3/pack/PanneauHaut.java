@@ -1,10 +1,12 @@
 package pack;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.OverlayLayout;
@@ -12,50 +14,62 @@ import javax.swing.OverlayLayout;
 public class PanneauHaut extends JPanel {
 
 
-	 Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-     Dimension Screen =  new Dimension(700,(int)(d.getHeight()*0.60));
+	 public PanneauGrilleGui  paneauJoueur;
 
-	 public PanneauGrilleGui  paneauJoueur = new PanneauGrilleGui(Screen);
+	 public PanneauGrilleGui paneauOrdiTop;
 
-	 public PanneauGrilleGui paneauOrdiTop = new PanneauGrilleGui(Screen);
+	 public PanneauGrilleGui paneauOrdiBottom;
 
-	 public PanneauGrilleGui paneauOrdiBottom= new PanneauGrilleGui(Screen);
+	 public JLabel PlayerName;
 
-    // JFrame f = new JFrame();
+	 public JLabel OrdiName;
 
 
-     public JLabel PlayerName = new JLabel("No name");
-     public JLabel OrdiName = new JLabel("Ordi name ");
 
-	 JPanel panel = new JPanel();
-
-	 JPanel playerPanel = new JPanel();
-
-	 JPanel OrdiPanel = new JPanel();
-
-	 JPanel OrdiPanelFlotte = new JPanel();
-
-	/**
-	 * Create the panel.
-	 */
-
-	public PanneauHaut(Participant Ordi,Participant joueur)
+	public PanneauHaut(Participant Ordi,Participant joueur,JFrame f)
 	{
-		initializeComponent();
+		initializeComponent(f);
 	}
 
 
 
-	public void initializeComponent()
+	public void initializeComponent(JFrame f)
 	{
+
+	    Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+	    Dimension Screen =  new Dimension(800,(int)(d.getHeight()*0.60));
+
+
+	     PlayerName = new JLabel("No name");
+	     OrdiName = new JLabel("Ordi name ");
+
+		 JPanel MainPannel = new JPanel();
+
+		 JPanel playerPanel = new JPanel();
+
+		 JPanel OrdiPanel = new JPanel();
+
+		 JPanel OrdiPanelFlotte = new JPanel();
+
+
+		 paneauJoueur = new PanneauGrilleGui(Screen);
+		 paneauOrdiTop = new PanneauGrilleGui(Screen);
+		 paneauOrdiBottom= new PanneauGrilleGui(Screen);
+
+
 
 
 	 playerPanel.setLayout(new BoxLayout(playerPanel,BoxLayout.PAGE_AXIS)); // create panel for player
      playerPanel.add(PlayerName);
      playerPanel.add(paneauJoueur);
 
+
+
+
      OrdiPanel.setLayout(new BoxLayout(OrdiPanel,BoxLayout.PAGE_AXIS));//create panel for ordi
      OrdiPanel.add(OrdiName);
+
+
 
      OrdiPanelFlotte.setLayout(new OverlayLayout(OrdiPanelFlotte));//create layout for both ordi flotte panels
      OrdiPanelFlotte.add(paneauOrdiTop);
@@ -63,43 +77,17 @@ public class PanneauHaut extends JPanel {
      OrdiPanel.add(OrdiPanelFlotte);
 
 
-     panel.setLayout(new BoxLayout(panel,BoxLayout.LINE_AXIS));
-     panel.add(playerPanel);
-     panel.add(Box.createRigidArea(new Dimension(5,0)));
-     panel.add(OrdiPanel);
+     MainPannel.setLayout(new BoxLayout(MainPannel,BoxLayout.LINE_AXIS));
+     MainPannel.add(Box.createRigidArea(new Dimension(200,0)));
+     MainPannel.add(playerPanel);
+     MainPannel.add(Box.createRigidArea(new Dimension(5,0)));
+     MainPannel.add(OrdiPanel);
 
 
-/*
+     f.getContentPane().add(MainPannel,BorderLayout.NORTH);//ajout du panneau au frame
 
- //Juste pout tester
-  *
-     f.getContentPane().add(panel,BorderLayout.NORTH);
-     f.pack();
-     f.setVisible(true);
- * */
 
 	}
-
-
-/*//juste pour tester
-	public static void main(String[] args)
-	{
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-
-				try {
-
-                 new PanneauHaut(null, null);
-
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
-	}*/
 
 
 }
