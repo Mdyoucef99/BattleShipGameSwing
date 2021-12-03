@@ -78,7 +78,6 @@ public class PanneauHaut extends JPanel {
      f.setVisible(true);
  * */
 
-
 	}
 
 
