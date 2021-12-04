@@ -60,8 +60,7 @@ public class PanneauHaut extends JPanel{
 
 		 JPanel OrdiPanelFlotte = new JPanel();
 		 
-		 JPanel Strategie = new JPanel();
-		 
+
 
 
 		 paneauJoueur = new PanneauGrilleGui(Screen);
@@ -93,26 +92,7 @@ public class PanneauHaut extends JPanel{
      panHaut.setLayout(new BorderLayout());
      panHaut.add(MainPannel);
 
-	 panHaut.add(Strategie,BorderLayout.NORTH);
-     Strategie.setPreferredSize(new Dimension(1920,25));
-     
-     JComboBox comboBox = new JComboBox();
-     
-		for(int i=0;i<elementsCombo.length;i++) {
-			comboBox.addItem(elementsCombo[i]);
-		}
-		
-		comboBox.setPreferredSize(new Dimension(100,25));
-		comboBox.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {	
-			}
-			
-		});
-
-		Strategie.setLayout(new BorderLayout());
-		Strategie.add(comboBox,BorderLayout.LINE_START);
 
 		
 
@@ -122,13 +102,23 @@ public class PanneauHaut extends JPanel{
      
      
 	}
-	
-	public void getJoueur() {
-		
+
+
+	public PanneauGrilleGui getJoueur() {
+		return paneauJoueur;
 	}
 
-	public void getOrdi() {
-		
+
+
+	public PanneauGrilleGui getOrdiTop() {
+		return paneauOrdiTop;
 	}
+
+
+
+	public PanneauGrilleGui getOrdiBottom() {
+		return paneauOrdiBottom;
+	}
+
 
 }
