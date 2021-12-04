@@ -54,6 +54,7 @@ public class PanneauPrincipal extends JPanel {
 
                 f.pack();
                 f.setVisible(true);
+                f.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 				} catch (Exception e) {
 					e.printStackTrace();
