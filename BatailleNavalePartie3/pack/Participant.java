@@ -3,6 +3,8 @@ package pack;
 public class Participant extends Flotte implements InterfaceParticipant
 {
 
+   protected Flotte flotteparticipant;
+
 	@Override
 	public Flotte getFlotte()
 	{

@@ -13,18 +13,15 @@ import javax.swing.JPanel;
 public class PanneauBas extends JPanel {
 
 
-	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-
-    Dimension Screen =  new Dimension((int)(d.getWidth()),(int)(d.getHeight()*0.40));
 
     public boolean IsGamePlaying=false;
 
     String button= "Montrer flotte";
 
-    JPanel Container = new JPanel();
 
-    JPanel Containerbutton = new JPanel();
+    public PanneauHaut refPanneauHaut;
 
+    public boolean TourJoueur=false;
 
 
     /**
@@ -34,6 +31,22 @@ public class PanneauBas extends JPanel {
 
 	public PanneauBas(JFrame f)
 	{
+
+		InitialiseComponent(f);
+
+	}
+
+
+	public void InitialiseComponent(JFrame f)
+	{
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+
+	    Dimension Screen =  new Dimension((int)(d.getWidth()),(int)(d.getHeight()*0.40));
+
+	    JPanel Container = new JPanel();
+
+	    JPanel Containerbutton = new JPanel();
+
 
 		JButton buttonNouvellePartie = new JButton("Nouvelle Partie");
 		buttonNouvellePartie.setBounds(50,100,95,30);
@@ -60,8 +73,10 @@ public class PanneauBas extends JPanel {
 
 		f.getContentPane().add(Container,BorderLayout.SOUTH);
 
-
 	}
+
+
+
 
 
 }
