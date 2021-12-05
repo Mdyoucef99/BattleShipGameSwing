@@ -25,6 +25,7 @@ public class PanneauHaut extends JPanel{
 
 
 	 public JLabel PlayerName;
+
 	 public JLabel OrdiName;
 
 
@@ -43,7 +44,6 @@ public class PanneauHaut extends JPanel{
 
 	  initializeComponent(f);
 	}
-
 
 
 	public void initializeComponent(JFrame f)
@@ -69,6 +69,7 @@ public class PanneauHaut extends JPanel{
 	 JPanel OrdiPanelFlotte = new JPanel();
 
      JPanel Strategie = new JPanel();
+
 
 	 paneauJoueur = new PanneauGrilleGui(Screen);
 	 paneauOrdiTop = new PanneauGrilleGui(Screen);
@@ -127,7 +128,6 @@ public class PanneauHaut extends JPanel{
 
 	}
 
-
 	public Joueur getJoueur()
 	{
 		return joueur;
@@ -139,6 +139,9 @@ public class PanneauHaut extends JPanel{
 	{
       return Ordi;
 	}
+
+
+
 
 
 

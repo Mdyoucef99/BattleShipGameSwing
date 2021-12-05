@@ -28,8 +28,6 @@ public class PanneauBas extends JPanel {
 
 	JButton buttonMontrerFlotte = new JButton(button);
 
-
-
 	public PanneauBas(PanneauHaut panneauhaut,JFrame f)
 	{
 		this.refPanneauHaut = panneauhaut;
@@ -37,11 +35,8 @@ public class PanneauBas extends JPanel {
 
 	}
 
-
-
 	public void InitialiseComponent(JFrame f)
 	{
-
 
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -54,7 +49,6 @@ public class PanneauBas extends JPanel {
 		buttonNouvellePartie.setBounds(50,100,95,30);
 		buttonMontrerFlotte.setBounds(50,100,95,30);
 
-
 		buttonNouvellePartie.addActionListener(new ActionListener()
 		{
 			@Override
@@ -65,7 +59,6 @@ public class PanneauBas extends JPanel {
 			}
 
 		});
-
 
 		buttonMontrerFlotte.addActionListener(new ActionListener()
 		{
@@ -88,38 +81,27 @@ public class PanneauBas extends JPanel {
 		Container.setSize(Screen);
 		Container.add(Containerbutton,BorderLayout.CENTER);
 
-
 		f.getContentPane().add(Container,BorderLayout.SOUTH);
 
 	}
 
 
-
 	public void montrerFlotteOrdi()
 	{
-
 		UtilitaireGrilleGui.montrerFlotte(refPanneauHaut.getOrdi().getFlotte(), refPanneauHaut.paneauOrdiBottom);
-
-		System.out.println("BUTTON PRESSED MONTRER FLOTTE ORDI");
 		if(incrementorFlotteVisible%2==0)
 		{
 			refPanneauHaut.paneauOrdiTop.setVisible(false);
 			buttonMontrerFlotte.setText("Cacher flotte");
 
 		}
-
 		else if (incrementorFlotteVisible%2==1)
 		{
-
 			refPanneauHaut.paneauOrdiTop.setVisible(true);
 			buttonMontrerFlotte.setText("Montrer flotte");
 		}
-
 		incrementorFlotteVisible++;
-
 	}
-
-
 
 
 	public void montrerFlotteJoueur()
@@ -130,6 +112,17 @@ public class PanneauBas extends JPanel {
 	}
 
 
+	  public boolean estClique() {
+
+		  return refPanneauHaut.paneauJoueur.caseEstCliquee();
+
+	  }
+
+
+	  public Coord getTirJoueur()
+	  {
+		  return refPanneauHaut.paneauJoueur.getPosition();
+	  }
 
 }
 
