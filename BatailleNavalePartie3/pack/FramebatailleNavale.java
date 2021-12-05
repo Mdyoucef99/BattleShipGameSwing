@@ -32,6 +32,9 @@ public class FramebatailleNavale extends JFrame {
 
 					MainFrame.getContentPane().add(panneau);//Ajout du panneau principal dans le main frame
 
+					boolean yo = true;
+
+
 
 
 				} catch (Exception e) {

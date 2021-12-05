@@ -1,6 +1,7 @@
 package pack;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -15,14 +16,16 @@ import javax.swing.JPanel;
 public class PanneauBas extends JPanel {
 
     public boolean IsGamePlaying=false;
+    public boolean TourJoueur=false;
+
+
+
 
     int incrementorFlotteVisible=0;
-
     String button= "Montrer flotte";
-
     public PanneauHaut refPanneauHaut;
 
-    public boolean TourJoueur=false;
+
 
     JButton buttonNouvellePartie = new JButton("Nouvelle Partie");
 
@@ -103,6 +106,11 @@ public class PanneauBas extends JPanel {
 		incrementorFlotteVisible++;
 	}
 
+	public void CacherFlotteOrdi()
+	{
+		refPanneauHaut.paneauOrdiTop.setVisible(true);
+	}
+
 
 	public void montrerFlotteJoueur()
 	{
@@ -111,6 +119,89 @@ public class PanneauBas extends JPanel {
 
 	}
 
+	      public boolean estClique()
+	      {
+		   return refPanneauHaut.paneauJoueur.caseEstCliquee();
+
+		  }
+
+		  public Coord getTirJoueur()
+		  {
+			  return refPanneauHaut.paneauJoueur.getPosition();
+		  }
+
+
+		  public void AfficherTirJoueur(Coord c)
+		  {
+
+			  refPanneauHaut.paneauJoueur.setValeur(c,Constantes.TOUCHE);
+
+		  }
+
+
+		  public void AfficherTirOrdi(Coord c)
+		  {
+
+			  refPanneauHaut.paneauOrdiTop.setValeur(c,Constantes.TOUCHE);
+			  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
+
+		  }
+
+
+		  public void MontrerCaseToucheJoueur(Coord c )
+		  {
+
+			  if(refPanneauHaut.getJoueur().flotteARecuTirQuiATouche(c))
+			  {
+				  refPanneauHaut.paneauJoueur.setCouleurFond(c,Color.red);
+
+			  }
+
+		  }
+
+		  public void MontrerCaseToucheOrdi(Coord c )
+		  {
+
+			  if(refPanneauHaut.getOrdi().flotteARecuTirQuiATouche(c))
+			  {
+
+				  refPanneauHaut.paneauOrdiTop.setCouleurFond(c,Color.red);
+				  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
+
+
+			  }
+
+		  }
+
+
+		  public void DesactiverCaseOrdi(Coord c )
+		  {
+			  refPanneauHaut.paneauOrdiTop.desactiverCase(c);
+			  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
+
+		  }
+
+
+
+		  public void reinitialiserPanneauOrdi()
+		  {
+
+			  refPanneauHaut.paneauOrdiTop.resetEstClique();
+			  refPanneauHaut.paneauOrdiTop.reactiverCases();
+			  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
+
+		  }
+
+
+		  public void RemettreEtatNouvellePartie()
+		  {
+			  refPanneauHaut.getJoueur().genereNouvelleFlotte();
+			  refPanneauHaut.getOrdi().genereNouvelleFlotte();
+			  montrerFlotteJoueur();
+			  CacherFlotteOrdi();
+
+
+		  }
 
 }
 
