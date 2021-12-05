@@ -112,18 +112,6 @@ public class PanneauBas extends JPanel {
 	}
 
 
-	  public boolean estClique() {
-
-		  return refPanneauHaut.paneauJoueur.caseEstCliquee();
-
-	  }
-
-
-	  public Coord getTirJoueur()
-	  {
-		  return refPanneauHaut.paneauJoueur.getPosition();
-	  }
-
 }
 
 

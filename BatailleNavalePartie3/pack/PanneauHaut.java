@@ -141,8 +141,17 @@ public class PanneauHaut extends JPanel{
 	}
 
 
+	  public boolean estClique() {
+
+		  return paneauJoueur.caseEstCliquee();
+
+	  }
 
 
+	  public Coord getTirJoueur()
+	  {
+		  return paneauJoueur.getPosition();
+	  }
 
 
 }
