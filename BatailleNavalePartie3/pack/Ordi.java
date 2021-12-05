@@ -6,7 +6,7 @@ public class Ordi extends Participant implements InterfaceOrdi {
 
 	public Ordi()
 	{
-		super.genereNouvelleFlotte();
+		flotteparticipant = obtenirFlotteAleatoire();
 		strategieordi = new OrdiStrategieDebutant();
 	}
 

@@ -1,15 +1,12 @@
 package pack;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.border.EmptyBorder;
 
 public class FramebatailleNavale extends JFrame {
 
-	private PanneauPrincipal contentPane;
 
 	public static void main(String[] args)
 	{
@@ -17,12 +14,24 @@ public class FramebatailleNavale extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+
 				try {
-					FramebatailleNavale frame = new FramebatailleNavale();
 
-					JOptionPane.showInputDialog(frame,"Enter Name");
+					FramebatailleNavale MainFrame = new FramebatailleNavale();//Creation du main frame
 
-					frame.setVisible(true);
+					String s =  JOptionPane.showInputDialog(MainFrame,"Enter Name").toString(); // POP up pour assigner le nom du joueur
+
+					Joueur mainplayer = new Joueur(s);//creation du nom du joueur
+
+					Ordi ordi = new Ordi();//creation de l'ordi
+
+					PanneauPrincipal panneau = new PanneauPrincipal(ordi, mainplayer, MainFrame); //creation du panneau
+
+
+					MainFrame.setVisible(true);
+
+					MainFrame.getContentPane().add(panneau);//Ajout du panneau principal dans le main frame
+
 
 
 				} catch (Exception e) {
@@ -33,22 +42,16 @@ public class FramebatailleNavale extends JFrame {
 	}
 
 
-
 	/**
 	 * Create the frame.
 
 	 */
 	public FramebatailleNavale() {
-
-		/**
+	/**
 		 * Launch the application.
 		 */
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		//contentPane = new PanneauPrincipal();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 	}
 

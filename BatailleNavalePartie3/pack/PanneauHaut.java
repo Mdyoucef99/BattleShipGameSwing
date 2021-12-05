@@ -1,7 +1,6 @@
 package pack;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -24,50 +23,57 @@ public class PanneauHaut extends JPanel{
 
 	 public PanneauGrilleGui paneauOrdiBottom;
 
+
 	 public JLabel PlayerName;
 
 	 public JLabel OrdiName;
-	 
-	 
+
+
+	 private Ordi Ordi;
+
+	 private Joueur joueur;
+
+
 	 private static String[] elementsCombo = {"Strategie","Debutant","Avance","Intermediaire"};
 
 
-
-	public PanneauHaut(Participant Ordi,Participant joueur,JFrame f)
+	public PanneauHaut(Ordi Ordi,Joueur joueur,JFrame f)
 	{
-		initializeComponent(f);
-	}
+      this.joueur = joueur;
+      this.Ordi = Ordi;
 
+	  initializeComponent(f);
+	}
 
 
 	public void initializeComponent(JFrame f)
 	{
 
-	    Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-	    Dimension Screen =  new Dimension(800,(int)(d.getHeight()*0.60));
+
+	 Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+	 Dimension Screen =  new Dimension(800,(int)(d.getHeight()*0.60));
 
 
-	     PlayerName = new JLabel("No name");
-	     OrdiName = new JLabel("Ordi name ");
-	     
-	     JPanel panHaut = new JPanel();
+	 PlayerName = new JLabel(joueur.getNom());
 
-		 JPanel MainPannel = new JPanel();
+	 OrdiName = new JLabel("Ordi name ");
 
-		 JPanel playerPanel = new JPanel();
+	 JPanel panHaut = new JPanel();
 
-		 JPanel OrdiPanel = new JPanel();
+	 JPanel MainPannel = new JPanel();
 
-		 JPanel OrdiPanelFlotte = new JPanel();
-		 
+     JPanel playerPanel = new JPanel();
 
+     JPanel OrdiPanel = new JPanel();
 
+	 JPanel OrdiPanelFlotte = new JPanel();
 
-		 paneauJoueur = new PanneauGrilleGui(Screen);
-		 paneauOrdiTop = new PanneauGrilleGui(Screen);
-		 paneauOrdiBottom= new PanneauGrilleGui(Screen);
+     JPanel Strategie = new JPanel();
 
 
+	 paneauJoueur = new PanneauGrilleGui(Screen);
+	 paneauOrdiTop = new PanneauGrilleGui(Screen);
+	 paneauOrdiBottom= new PanneauGrilleGui(Screen);
 
 
 	 playerPanel.setLayout(new BoxLayout(playerPanel,BoxLayout.PAGE_AXIS)); // create panel for player
@@ -88,37 +94,64 @@ public class PanneauHaut extends JPanel{
      MainPannel.add(playerPanel);
      MainPannel.add(Box.createRigidArea(new Dimension(5,0)));
      MainPannel.add(OrdiPanel);
-     
+
      panHaut.setLayout(new BorderLayout());
      panHaut.add(MainPannel);
 
 
+	 panHaut.add(Strategie,BorderLayout.NORTH);
+     Strategie.setPreferredSize(new Dimension(1920,25));
 
-		
+     JComboBox comboBox = new JComboBox();
 
-     f.getContentPane().add(panHaut,BorderLayout.NORTH);//ajout du panneau au frame
+		for(int i=0;i<elementsCombo.length;i++) {
+			comboBox.addItem(elementsCombo[i]);
+		}
+
+		comboBox.setPreferredSize(new Dimension(100,25));
+		comboBox.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			}
+
+		});
+
+		Strategie.setLayout(new BorderLayout());
+		Strategie.add(comboBox,BorderLayout.LINE_START);
 
 
-     
-     
+
+        f.getContentPane().add(panHaut,BorderLayout.NORTH);//ajout du panneau au frame
+
+
+
+	}
+
+	public Joueur getJoueur()
+	{
+		return joueur;
+
 	}
 
 
-	public PanneauGrilleGui getJoueur() {
-		return paneauJoueur;
+	public Ordi getOrdi()
+	{
+      return Ordi;
 	}
 
 
+	  public boolean estClique() {
 
-	public PanneauGrilleGui getOrdiTop() {
-		return paneauOrdiTop;
-	}
+		  return paneauJoueur.caseEstCliquee();
+
+	  }
 
 
-
-	public PanneauGrilleGui getOrdiBottom() {
-		return paneauOrdiBottom;
-	}
+	  public Coord getTirJoueur()
+	  {
+		  return paneauJoueur.getPosition();
+	  }
 
 
 }

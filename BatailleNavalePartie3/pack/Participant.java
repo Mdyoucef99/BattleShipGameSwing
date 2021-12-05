@@ -3,44 +3,46 @@ package pack;
 public class Participant extends Flotte implements InterfaceParticipant
 {
 
+   protected Flotte flotteparticipant;
+
 	@Override
 	public Flotte getFlotte()
 	{
-		return super.clone();
+		return flotteparticipant;
 	}
 
 
 	@Override
 	public void genereNouvelleFlotte()
 	{
-		super.obtenirFlotteAleatoire();
+		flotteparticipant = obtenirFlotteAleatoire();
 	}
 
 
 	@Override
 	public boolean flotteARecuTirQuiATouche(Coord tir)
 	{
-		return super.dejaRecuCoup(tir);
+		return flotteparticipant.dejaRecuCoup(tir);
 	}
 
 
 	@Override
 	public boolean jeuEstTermine() {
 
-		return super.jeuEstTermine();
+		return flotteparticipant.jeuEstTermine();
 	}
 
 	@Override
 	public String getDernierNavireCoule()
 	{
-		return super.getDernierNavireCoule();
+		return flotteparticipant.getDernierNavireCoule();
 	}
 
 
 	@Override
 	public boolean dernierTirACoule() {
 
-		return super.dernierTirACoule();
+		return flotteparticipant.dernierTirACoule();
 	}
 
 
