@@ -11,6 +11,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class PanneauBas extends JPanel {
@@ -46,6 +47,7 @@ public class PanneauBas extends JPanel {
 	    JPanel Container = new JPanel();
 
 	    JPanel Containerbutton = new JPanel();
+	    
 
 		buttonNouvellePartie.setBounds(50,100,95,30);
 		buttonMontrerFlotte.setBounds(50,100,95,30);
@@ -72,9 +74,11 @@ public class PanneauBas extends JPanel {
 						
 						if(nombre==1) {
 							TourJoueur=true;
+							JOptionPane.showMessageDialog(f,"L'ordinateur a été sélectionné au hasard pour commencer");
 						}
 						else {
 							IsGamePlaying=true;
+							JOptionPane.showMessageDialog(f,"Le joueur a été sélectionné au hasard pour commencer");
 						}
 
 						  System.out.println( UtilitaireFonctions.nbAlea(1,2));
@@ -88,9 +92,9 @@ public class PanneauBas extends JPanel {
 									AfficherTirOrdi(getTirJoueur()); //System.out.println(refPanneauHaut.paneauOrdiTop.getPosition().toString());
 									if(refPanneauHaut.getOrdi().flotteARecuTirQuiATouche(getTirJoueur()))
 									{						
-										MontrerCaseToucheOrdi(getTirJoueur());//enlever le if
+										MontrerCaseToucheOrdi(getTirJoueur());
 										if(ordi.dernierTirACoule()) {
-											ordi.getDernierNavireCoule();// reste a afficher 
+											JOptionPane.showMessageDialog(f,ordi.getDernierNavireCoule()+" coulé");
 										}	
 									}
 									DesactiverCaseOrdi(getTirJoueur());
@@ -110,11 +114,19 @@ public class PanneauBas extends JPanel {
 								TourJoueur = true;			
 							}
 						}
-						//afficher gagnant
+						if(j.jeuEstTermine()) {
+							JOptionPane.showMessageDialog(f,j.getNom()+" a gagné en "+nombretirJoueur+" tirs");
+						}
+						else {
+							JOptionPane.showMessageDialog(f,"L'ordinateur a gagné en"+nombreTirOrdi+" tirs");
+						}
+						
 					}
 				};
 
 			System.out.println("BUTTON PRESSED NOUVELLE PARTIE ");
+			
+			
 
 			Thread t = new Thread(code);
 			t.start();
@@ -209,27 +221,13 @@ public class PanneauBas extends JPanel {
 
 		  public void MontrerCaseToucheJoueur(Coord c )
 		  {
-
-			  if(refPanneauHaut.getJoueur().flotteARecuTirQuiATouche(c))
-			  {
-				  refPanneauHaut.paneauJoueur.setCouleurFond(c,Color.red);
-
-			  }
-
+			  refPanneauHaut.paneauJoueur.setCouleurFond(c,Color.red);
 		  }
 
 		  public void MontrerCaseToucheOrdi(Coord c )
 		  {
-
-			  if(refPanneauHaut.getOrdi().flotteARecuTirQuiATouche(c))
-			  {
-
 				  refPanneauHaut.paneauOrdiTop.setCouleurFond(c,Color.red);
 				  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
-
-
-			  }
-
 		  }
 
 
