@@ -69,35 +69,50 @@ public class PanneauBas extends JPanel {
 						Ordi ordi = refPanneauHaut.getOrdi();
 
 						int nombre = UtilitaireFonctions.nbAlea(1,2);
+						
+						if(nombre==1) {
+							TourJoueur=true;
+						}
+						else {
+							IsGamePlaying=true;
+						}
 
 						  System.out.println( UtilitaireFonctions.nbAlea(1,2));
 						while(j.jeuEstTermine()==false && ordi.jeuEstTermine()==false)
 						{
-
-							if(nombre==1)
+							if(TourJoueur) 
 							{
-								TourJoueur=true;
-
 								if(estClique()==true)
 								{
-
-                                   System.out.println(refPanneauHaut.paneauOrdiTop.getPosition().toString());
-
+									nombretirJoueur++;
+									AfficherTirOrdi(getTirJoueur()); //System.out.println(refPanneauHaut.paneauOrdiTop.getPosition().toString());
+									if(refPanneauHaut.getOrdi().flotteARecuTirQuiATouche(getTirJoueur()))
+									{						
+										MontrerCaseToucheOrdi(getTirJoueur());//enlever le if
+										if(ordi.dernierTirACoule()) {
+											ordi.getDernierNavireCoule();// reste a afficher 
+										}	
+									}
+									DesactiverCaseOrdi(getTirJoueur());
+									IsGamePlaying = true;
+									TourJoueur = false;
 								}
-
 							}
-
-
+							else {
+								AfficherTirJoueur(ordi.getStrategie().getTir());
+								if(refPanneauHaut.getJoueur().flotteARecuTirQuiATouche(ordi.getStrategie().getTir()))
+								{									 
+									MontrerCaseToucheJoueur(ordi.getStrategie().getTir());
+									ordi.leTirTouche(ordi.getStrategie().getTir());
+									nombreTirOrdi++;
+								}
+								IsGamePlaying = false;
+								TourJoueur = true;			
+							}
 						}
-						// TODO Auto-generated method stub
-
+						//afficher gagnant
 					}
-
-
-
 				};
-
-
 
 			System.out.println("BUTTON PRESSED NOUVELLE PARTIE ");
 
