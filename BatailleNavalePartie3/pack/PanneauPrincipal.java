@@ -9,12 +9,16 @@ import javax.swing.JPanel;
 public class PanneauPrincipal extends JPanel {
 
 	public static PanneauHaut panneauhaut;
+	
+	public CadreBatailleNavale Strategie;
 
 	public PanneauBas panneauBas;
 
 	public Joueur joueur;
 
 	public Ordi ordi;
+	
+	public CadreBatailleNavale MenuBar;
 
 
 	static Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
