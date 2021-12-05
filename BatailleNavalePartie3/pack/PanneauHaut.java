@@ -98,9 +98,6 @@ public class PanneauHaut extends JPanel{
      panHaut.add(MainPannel);
 
 
-
-
-
 	 panHaut.add(Strategie,BorderLayout.NORTH);
      Strategie.setPreferredSize(new Dimension(1920,25));
 
@@ -122,7 +119,11 @@ public class PanneauHaut extends JPanel{
 		Strategie.setLayout(new BorderLayout());
 		Strategie.add(comboBox,BorderLayout.LINE_START);
 
+
+
         f.getContentPane().add(panHaut,BorderLayout.NORTH);//ajout du panneau au frame
+
+
 
 	}
 

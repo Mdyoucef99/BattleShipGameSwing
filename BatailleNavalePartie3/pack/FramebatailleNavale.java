@@ -17,24 +17,19 @@ public class FramebatailleNavale extends JFrame {
 
 				try {
 
-					FramebatailleNavale MainFrame = new FramebatailleNavale();
-					String s =  JOptionPane.showInputDialog(MainFrame,"Enter Name").toString();
+					FramebatailleNavale MainFrame = new FramebatailleNavale();//Creation du main frame
 
-					Joueur mainplayer = new Joueur(s);
-					Ordi ordi = new Ordi();
+					String s =  JOptionPane.showInputDialog(MainFrame,"Enter Name").toString(); // POP up pour assigner le nom du joueur
 
-					mainplayer.genereNouvelleFlotte();
-					ordi.genereNouvelleFlotte();
+					Joueur mainplayer = new Joueur(s);//creation du nom du joueur
 
+					Ordi ordi = new Ordi();//creation de l'ordi
 
-
-					PanneauPrincipal panneau = new PanneauPrincipal(ordi, mainplayer, MainFrame);
+					PanneauPrincipal panneau = new PanneauPrincipal(ordi, mainplayer, MainFrame); //creation du panneau
 
 					MainFrame.setVisible(true);
-					MainFrame.getContentPane().add(panneau);
 
-
-
+					MainFrame.getContentPane().add(panneau);//Ajout du panneau principal dans le main frame
 
 
 				} catch (Exception e) {
@@ -45,14 +40,12 @@ public class FramebatailleNavale extends JFrame {
 	}
 
 
-
 	/**
 	 * Create the frame.
 
 	 */
 	public FramebatailleNavale() {
-
-		/**
+	/**
 		 * Launch the application.
 		 */
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
