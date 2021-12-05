@@ -22,7 +22,7 @@ public class Participant extends Flotte implements InterfaceParticipant
 	@Override
 	public boolean flotteARecuTirQuiATouche(Coord tir)
 	{
-		return super.dejaRecuCoup(tir);
+		return flotteparticipant.leTirTouche(tir);
 	}
 
 
@@ -30,21 +30,21 @@ public class Participant extends Flotte implements InterfaceParticipant
 	public boolean jeuEstTermine() {
 
 
-		return super.jeuEstTermine();
+		return flotteparticipant.jeuEstTermine();
 
 	}
 
 	@Override
 	public String getDernierNavireCoule()
 	{
-		return super.getDernierNavireCoule();
+		return flotteparticipant.getDernierNavireCoule();
 	}
 
 
 	@Override
 	public boolean dernierTirACoule() {
 
-		return super.dernierTirACoule();
+		return flotteparticipant.dernierTirACoule();
 	}
 
 

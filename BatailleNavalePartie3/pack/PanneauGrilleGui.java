@@ -341,6 +341,8 @@ public class PanneauGrilleGui extends JPanel{
 					dernierClic.ligne = b.ligne;
 					dernierClic.colonne = b.colonne;
 					estClique = true;
+
+
 				}
 		}
 	}
