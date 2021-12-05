@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 
 public class PanneauBas extends JPanel {
 
-    public boolean IsGamePlaying=false;
 
+    public boolean IsGamePlaying=false;
 
     public boolean TourJoueur=false;
 
@@ -48,7 +48,7 @@ public class PanneauBas extends JPanel {
 	    JPanel Container = new JPanel();
 
 	    JPanel Containerbutton = new JPanel();
-	    
+
 
 		buttonNouvellePartie.setBounds(50,100,95,30);
 		buttonMontrerFlotte.setBounds(50,100,95,30);
@@ -99,7 +99,7 @@ public class PanneauBas extends JPanel {
 									   MontrerCaseToucheOrdi();
 									   if(ordi.dernierTirACoule()==true) // si le navire est coul�
 									   {
-										   JOptionPane.showMessageDialog(f,"le navire a coul�","Alert",JOptionPane.WARNING_MESSAGE);
+										   JOptionPane.showMessageDialog(f,"le navire a coule","Alert",JOptionPane.WARNING_MESSAGE);
 									   }
 
 								   }
@@ -120,10 +120,11 @@ public class PanneauBas extends JPanel {
 							{
 								MontrerCaseToucheJoueur(c);
 								ordi.getStrategie().aviserTouche();
-								TourJoueur=true;
 
 							}
 
+
+							TourJoueur=true;
 						}
 
 					}
@@ -131,7 +132,7 @@ public class PanneauBas extends JPanel {
 						if (joueur.jeuEstTermine()==true)
 						{
 
-						 JOptionPane.showMessageDialog(f,"le gagnant est l'ordinateur avec " + nombreTirOrdi,"Alert",JOptionPane.WARNING_MESSAGE);
+						 JOptionPane.showMessageDialog(f,"le gagnant est l'ordinateur avec " + nombreTirOrdi ,"Alert",JOptionPane.WARNING_MESSAGE);
 
 						}
 
@@ -289,6 +290,7 @@ public class PanneauBas extends JPanel {
 
 
 		  }
+
 
 
 }
