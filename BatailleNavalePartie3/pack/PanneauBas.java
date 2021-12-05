@@ -11,14 +11,13 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class PanneauBas extends JPanel {
 
     public boolean IsGamePlaying=false;
-    public boolean TourJoueur=false;
-
-
+    public boolean TourJoueur=true;
 
     int incrementorFlotteVisible=0;
     String button= "Montrer flotte";
@@ -61,39 +60,45 @@ public class PanneauBas extends JPanel {
 					int nombretirJoueur=0;
 					int nombreTirOrdi=0;
 
+
 					@Override
 					public void run() {
-
 
 						Joueur j = refPanneauHaut.getJoueur();
 						Ordi ordi = refPanneauHaut.getOrdi();
 
 						int nombre = UtilitaireFonctions.nbAlea(1,2);
 
-						  System.out.println( UtilitaireFonctions.nbAlea(1,2));
 						while(j.jeuEstTermine()==false && ordi.jeuEstTermine()==false)
 						{
-
-							if(nombre==1)
+							if(TourJoueur==true)
 							{
-								TourJoueur=true;
-
-								if(estClique()==true)
+								if(refPanneauHaut.paneauOrdiTop.caseEstCliquee()==true) // Si le joueur a cliqué sur le panneau de ordi en haut
 								{
 
-                                   System.out.println(refPanneauHaut.paneauOrdiTop.getPosition().toString());
+								   nombretirJoueur++;
+								   AfficherTirOrdi();
+
+								   if(ordi.flotteARecuTirQuiATouche(refPanneauHaut.paneauOrdiTop.getPosition())==true)//Si le tir a touché la flotte de l’ordinateur
+								   {
+
+									   MontrerCaseToucheOrdi();
+
+									   if(ordi.dernierTirACoule()==true) // si le navire est coulé
+									   {
+										   JOptionPane.showMessageDialog(f,"le navire a coulé","Alert",JOptionPane.WARNING_MESSAGE);
+									   }
+
+								   }
+								   refPanneauHaut.paneauOrdiTop.desactiverCase(refPanneauHaut.paneauOrdiTop.getPosition());
 
 								}
 
+								 TourJoueur=false;
 							}
 
-
 						}
-						// TODO Auto-generated method stub
-
 					}
-
-
 
 				};
 
@@ -139,6 +144,7 @@ public class PanneauBas extends JPanel {
 		if(incrementorFlotteVisible%2==0)
 		{
 			refPanneauHaut.paneauOrdiTop.setVisible(false);
+
 			buttonMontrerFlotte.setText("Cacher flotte");
 
 		}
@@ -150,10 +156,14 @@ public class PanneauBas extends JPanel {
 		incrementorFlotteVisible++;
 	}
 
+
+
 	public void CacherFlotteOrdi()
 	{
 		refPanneauHaut.paneauOrdiTop.setVisible(true);
 	}
+
+
 
 
 	public void montrerFlotteJoueur()
@@ -163,38 +173,41 @@ public class PanneauBas extends JPanel {
 
 	}
 
+
+
 	      public boolean estClique()
 	      {
-		   return refPanneauHaut.paneauOrdiTop.caseEstCliquee();
-
+		   return refPanneauHaut.paneauJoueur.caseEstCliquee();
 		  }
+
+
+
 
 		  public Coord getTirJoueur()
 		  {
-			  return refPanneauHaut.paneauJoueur.getPosition();
+			  return refPanneauHaut.paneauOrdiTop.getPosition();
 		  }
+
 
 
 		  public void AfficherTirJoueur(Coord c)
 		  {
-
 			  refPanneauHaut.paneauJoueur.setValeur(c,Constantes.TOUCHE);
 
 		  }
 
 
-		  public void AfficherTirOrdi(Coord c)
-		  {
 
-			  refPanneauHaut.paneauOrdiTop.setValeur(c,Constantes.TOUCHE);
-			  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
+		  public void AfficherTirOrdi()
+		  {
+			  refPanneauHaut.paneauOrdiTop.setValeur(refPanneauHaut.paneauOrdiTop.getPosition(),Constantes.TOUCHE);
+			  refPanneauHaut.paneauOrdiBottom.copierEtatCases(refPanneauHaut.paneauOrdiTop);
 
 		  }
 
 
 		  public void MontrerCaseToucheJoueur(Coord c )
 		  {
-
 			  if(refPanneauHaut.getJoueur().flotteARecuTirQuiATouche(c))
 			  {
 				  refPanneauHaut.paneauJoueur.setCouleurFond(c,Color.red);
@@ -203,22 +216,17 @@ public class PanneauBas extends JPanel {
 
 		  }
 
-		  public void MontrerCaseToucheOrdi(Coord c )
+
+
+		  public void MontrerCaseToucheOrdi()
 		  {
-
-			  if(refPanneauHaut.getOrdi().flotteARecuTirQuiATouche(c))
-			  {
-
-				  refPanneauHaut.paneauOrdiTop.setCouleurFond(c,Color.red);
-				  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
-
-
-			  }
+				  refPanneauHaut.paneauOrdiTop.setCouleurFond(refPanneauHaut.paneauOrdiTop.getPosition(),Color.red);
+				  refPanneauHaut.paneauOrdiBottom.copierEtatCases(refPanneauHaut.paneauOrdiTop);
 
 		  }
 
 
-		  public void DesactiverCaseOrdi(Coord c )
+		  public void DesactiverCaseOrdi(Coord c)
 		  {
 			  refPanneauHaut.paneauOrdiTop.desactiverCase(c);
 			  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
