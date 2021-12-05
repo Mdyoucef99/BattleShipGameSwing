@@ -20,11 +20,9 @@ public class PanneauBas extends JPanel {
 
 
 
-
     int incrementorFlotteVisible=0;
     String button= "Montrer flotte";
     public PanneauHaut refPanneauHaut;
-
 
 
     JButton buttonNouvellePartie = new JButton("Nouvelle Partie");
@@ -56,6 +54,33 @@ public class PanneauBas extends JPanel {
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
+		Runnable code = new Runnable()
+				{
+
+					int nombretirJoueur=0;
+					int nombreTirOrdi=0;
+
+					@Override
+					public void run() {
+
+						Joueur j = refPanneauHaut.getJoueur();
+						Ordi ordi = refPanneauHaut.getOrdi();
+
+						while(j.jeuEstTermine()==false && ordi.jeuEstTermine()==false)
+						{
+
+						}
+						// TODO Auto-generated method stub
+
+					}
+
+
+
+				};
+
+				Thread t = new Thread(code);
+				t.start();
 
 			System.out.println("BUTTON PRESSED NOUVELLE PARTIE ");
 
@@ -202,6 +227,9 @@ public class PanneauBas extends JPanel {
 
 
 		  }
+
+
+
 
 }
 
