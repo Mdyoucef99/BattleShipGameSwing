@@ -56,7 +56,7 @@ public class PanneauHaut extends JPanel{
 
 	 PlayerName = new JLabel(joueur.getNom());
 
-	 OrdiName = new JLabel("Ordi name ");
+	 OrdiName = new JLabel("Ordi");
 
 	 JPanel panHaut = new JPanel();
 
@@ -90,7 +90,7 @@ public class PanneauHaut extends JPanel{
 
 
      MainPannel.setLayout(new BoxLayout(MainPannel,BoxLayout.LINE_AXIS));
-     MainPannel.add(Box.createRigidArea(new Dimension(200,0)));
+     MainPannel.add(Box.createRigidArea(new Dimension(150,0)));
      MainPannel.add(playerPanel);
      MainPannel.add(Box.createRigidArea(new Dimension(5,0)));
      MainPannel.add(OrdiPanel);

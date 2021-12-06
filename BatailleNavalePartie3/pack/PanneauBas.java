@@ -88,13 +88,13 @@ public class PanneauBas extends JPanel {
 						{
 							if(TourJoueur==true)
 							{
-								if(refPanneauHaut.paneauOrdiTop.caseEstCliquee()==true) // Si le joueur a cliqu� sur le panneau de ordi en haut
+								if(estClique()==true) // Si le joueur a cliqu� sur le panneau de ordi en haut
 								{
 
 								   nombretirJoueur++;
 								   AfficherTirOrdi();
 
-								   if(ordi.flotteARecuTirQuiATouche(refPanneauHaut.paneauOrdiTop.getPosition())==true)//Si le tir a touch� la flotte de l�ordinateur
+								   if(ordi.flotteARecuTirQuiATouche(getTirJoueur())==true)//Si le tir a touch� la flotte de l�ordinateur
 								   {
 									   MontrerCaseToucheOrdi();
 									   if(ordi.dernierTirACoule()==true) // si le navire est coul�
@@ -103,7 +103,7 @@ public class PanneauBas extends JPanel {
 									   }
 
 								   }
-								   refPanneauHaut.paneauOrdiTop.desactiverCase(refPanneauHaut.paneauOrdiTop.getPosition());
+								   refPanneauHaut.paneauOrdiTop.desactiverCase(getTirJoueur());
 								   TourJoueur=false;
 								}
 							}
@@ -120,6 +120,7 @@ public class PanneauBas extends JPanel {
 							{
 								MontrerCaseToucheJoueur(c);
 								ordi.getStrategie().aviserTouche();
+
 
 							}
 
@@ -216,7 +217,7 @@ public class PanneauBas extends JPanel {
 
 	      public boolean estClique()
 	      {
-		   return refPanneauHaut.paneauJoueur.caseEstCliquee();
+		   return refPanneauHaut.paneauOrdiTop.caseEstCliquee();
 		  }
 
 
