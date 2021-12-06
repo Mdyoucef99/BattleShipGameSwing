@@ -23,16 +23,13 @@ public class PanneauHaut extends JPanel{
 
 	 public PanneauGrilleGui paneauOrdiBottom;
 
-
 	 public JLabel PlayerName;
 
 	 public JLabel OrdiName;
 
-
 	 private Ordi Ordi;
 
 	 private Joueur joueur;
-
 
 	 private static String[] elementsCombo = {"Strategie","Debutant","Avance","Intermediaire"};
 
@@ -52,7 +49,6 @@ public class PanneauHaut extends JPanel{
 
 	 Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 	 Dimension Screen =  new Dimension(800,(int)(d.getHeight()*0.60));
-
 
 	 PlayerName = new JLabel(joueur.getNom());
 
@@ -121,9 +117,7 @@ public class PanneauHaut extends JPanel{
 		Strategie.add(comboBox,BorderLayout.LINE_START);
 
 
-
         f.getContentPane().add(panHaut,BorderLayout.NORTH);//ajout du panneau au frame
-
 
 
 	}
@@ -139,10 +133,6 @@ public class PanneauHaut extends JPanel{
 	{
         return Ordi;
 	}
-
-
-
-
 
 
 }
