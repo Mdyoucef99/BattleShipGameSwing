@@ -28,8 +28,8 @@ public class FramebatailleNavale extends JFrame {
 					PanneauPrincipal panneau = new PanneauPrincipal(ordi, mainplayer, MainFrame); //creation du panneau
 
 					MainFrame.setVisible(true);
-
 					MainFrame.getContentPane().add(panneau);//Ajout du panneau principal dans le main frame
+					MainFrame.setTitle("Jeu Bataille Navale");
 
 
 

@@ -21,12 +21,12 @@ public class PanneauBas extends JPanel {
     public boolean TourJoueur=false;
 
     int incrementorFlotteVisible=0;
-    String button= "Montrer flotte";
+    String buttonText= "Montrer flotte Ordinateur";
     public PanneauHaut refPanneauHaut;
 
     JButton buttonNouvellePartie = new JButton("Nouvelle Partie");
 
-	JButton buttonMontrerFlotte = new JButton(button);
+	JButton buttonMontrerFlotte = new JButton(buttonText);
 
 	public PanneauBas(PanneauHaut panneauhaut,JFrame f)
 	{
@@ -183,13 +183,13 @@ public class PanneauBas extends JPanel {
 		{
 			refPanneauHaut.paneauOrdiTop.setVisible(false);
 
-			buttonMontrerFlotte.setText("Cacher flotte");
+			buttonMontrerFlotte.setText("Cacher flotte Ordinateur");
 
 		}
 		else if (incrementorFlotteVisible%2==1)
 		{
 			refPanneauHaut.paneauOrdiTop.setVisible(true);
-			buttonMontrerFlotte.setText("Montrer flotte");
+			buttonMontrerFlotte.setText(buttonText);
 		}
 		incrementorFlotteVisible++;
 	}
@@ -267,11 +267,12 @@ public class PanneauBas extends JPanel {
 
 		  public void RemettreEtatNouvellePartie()
 		  {
+
+
 			  refPanneauHaut.getJoueur().genereNouvelleFlotte();
 			  refPanneauHaut.getOrdi().genereNouvelleFlotte();
 			  montrerFlotteJoueur();
 			  CacherFlotteOrdi();
-
 
 		  }
 
