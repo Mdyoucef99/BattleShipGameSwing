@@ -18,14 +18,11 @@ public class PanneauBas extends JPanel {
 
     public boolean IsGamePlaying=false;
 
-
     public boolean TourJoueur=false;
-
 
     int incrementorFlotteVisible=0;
     String button= "Montrer flotte";
     public PanneauHaut refPanneauHaut;
-
 
     JButton buttonNouvellePartie = new JButton("Nouvelle Partie");
 
@@ -48,6 +45,7 @@ public class PanneauBas extends JPanel {
 	    JPanel Container = new JPanel();
 
 	    JPanel Containerbutton = new JPanel();
+
 
 		buttonNouvellePartie.setBounds(50,100,95,30);
 		buttonMontrerFlotte.setBounds(50,100,95,30);
@@ -76,36 +74,37 @@ public class PanneauBas extends JPanel {
                         if(nombre==1)
                         {
                         	TourJoueur=true;
+                        	 JOptionPane.showMessageDialog(f,"Le joueur a ete choisie au hazard pour commencer ","Alert",JOptionPane.WARNING_MESSAGE);
                         }
 
                         else
                         {
                         	TourJoueur=false;
+                       	    JOptionPane.showMessageDialog(f,"L'ordi a ete choisie au hazard pour commencer ","Alert",JOptionPane.WARNING_MESSAGE);
                         }
 
 						while(joueur.jeuEstTermine()==false && ordi.jeuEstTermine()==false)
 						{
 							if(TourJoueur==true)
 							{
-								if(refPanneauHaut.paneauOrdiTop.caseEstCliquee()==true) // Si le joueur a cliqué sur le panneau de ordi en haut
+								if(estClique()==true) // Si le joueur a clique sur le panneau de ordi en haut
 								{
 
 								   nombretirJoueur++;
 								   AfficherTirOrdi();
 
-								   if(ordi.flotteARecuTirQuiATouche(refPanneauHaut.paneauOrdiTop.getPosition())==true)//Si le tir a touché la flotte de l’ordinateur
+								   if(ordi.flotteARecuTirQuiATouche(getTirJoueur())==true)//Si le tir a touche la flotte de lï¿½ordinateur
 								   {
 									   MontrerCaseToucheOrdi();
-									   if(ordi.dernierTirACoule()==true) // si le navire est coulé
+									   if(ordi.dernierTirACoule()==true) // si le navire est coule
 									   {
-										   JOptionPane.showMessageDialog(f,"le navire a coulé","Alert",JOptionPane.WARNING_MESSAGE);
+										   JOptionPane.showMessageDialog(f,"Le Navire "+ ordi.getDernierNavireCoule() + " a coule","Alert",JOptionPane.WARNING_MESSAGE);
 									   }
 
 								   }
-								   refPanneauHaut.paneauOrdiTop.desactiverCase(refPanneauHaut.paneauOrdiTop.getPosition());
+								   refPanneauHaut.paneauOrdiTop.desactiverCase(getTirJoueur());
 								   TourJoueur=false;
 								}
-
 							}
 
 							else if (TourJoueur==false)
@@ -120,24 +119,25 @@ public class PanneauBas extends JPanel {
 							{
 								MontrerCaseToucheJoueur(c);
 								ordi.getStrategie().aviserTouche();
-								TourJoueur=true;
+
 
 							}
 
+
+							TourJoueur=true;
 						}
 
 					}
-
 						if (joueur.jeuEstTermine()==true)
 						{
 
-						 JOptionPane.showMessageDialog(f,"le gagnant est l'ordinateur avec " + nombreTirOrdi,"Alert",JOptionPane.WARNING_MESSAGE);
+						 JOptionPane.showMessageDialog(f,"le gagnant est l'ordinateur avec " + nombreTirOrdi +" tirs","Alert",JOptionPane.WARNING_MESSAGE);
 
 						}
 
 						else if(ordi.jeuEstTermine()==true)
 						{
-							JOptionPane.showMessageDialog(f,"le gagnant est le joueur avec " + nombretirJoueur ,"Alert",JOptionPane.WARNING_MESSAGE);
+						 JOptionPane.showMessageDialog(f,"le gagnant est le joueur avec " + nombretirJoueur + " tirs" ,"Alert",JOptionPane.WARNING_MESSAGE);
 						}
 
 					}
@@ -195,13 +195,10 @@ public class PanneauBas extends JPanel {
 	}
 
 
-
 	public void CacherFlotteOrdi()
 	{
 		refPanneauHaut.paneauOrdiTop.setVisible(true);
 	}
-
-
 
 
 	public void montrerFlotteJoueur()
@@ -211,14 +208,10 @@ public class PanneauBas extends JPanel {
 
 	}
 
-
-
 	      public boolean estClique()
 	      {
-		   return refPanneauHaut.paneauJoueur.caseEstCliquee();
+		   return refPanneauHaut.paneauOrdiTop.caseEstCliquee();
 		  }
-
-
 
 
 		  public Coord getTirJoueur()
@@ -226,14 +219,11 @@ public class PanneauBas extends JPanel {
 			  return refPanneauHaut.paneauOrdiTop.getPosition();
 		  }
 
-
-
 		  public void AfficherTirJoueur(Coord c)
 		  {
 			  refPanneauHaut.paneauJoueur.setValeur(c,Constantes.TOUCHE);
 
 		  }
-
 
 
 		  public void AfficherTirOrdi()
@@ -243,14 +233,12 @@ public class PanneauBas extends JPanel {
 
 		  }
 
-
 		  public void MontrerCaseToucheJoueur(Coord c )
 		  {
 
 				  refPanneauHaut.paneauJoueur.setCouleurFond(c,Color.red);
 
 		  }
-
 
 
 		  public void MontrerCaseToucheOrdi()
@@ -260,14 +248,12 @@ public class PanneauBas extends JPanel {
 
 		  }
 
-
 		  public void DesactiverCaseOrdi(Coord c)
 		  {
 			  refPanneauHaut.paneauOrdiTop.desactiverCase(c);
 			  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
 
 		  }
-
 
 
 		  public void reinitialiserPanneauOrdi()
@@ -279,7 +265,6 @@ public class PanneauBas extends JPanel {
 
 		  }
 
-
 		  public void RemettreEtatNouvellePartie()
 		  {
 			  refPanneauHaut.getJoueur().genereNouvelleFlotte();
@@ -289,7 +274,6 @@ public class PanneauBas extends JPanel {
 
 
 		  }
-
 
 }
 
