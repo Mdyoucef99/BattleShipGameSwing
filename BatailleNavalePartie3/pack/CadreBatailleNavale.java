@@ -1,9 +1,13 @@
 package pack;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class CadreBatailleNavale extends JMenuBar {
 	
@@ -30,6 +34,34 @@ public class CadreBatailleNavale extends JMenuBar {
 		Menu.add(m3);
 		Strategie.add(Menu);
 		f.setJMenuBar(Strategie);
+		
+				
+		m1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				InterfaceStrategie strategie = new OrdiStrategieDebutant();
+			}
+		});
+		m2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				InterfaceStrategie strategie = new OrdiStrategieIntermediaire();
+				Ordi ordi = new Ordi();
+				ordi.setStrategie(strategie);
+			}
+		}); 	
+		m3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				InterfaceStrategie strategie = new OrdiStrategieAvance();
+				Ordi ordi = new Ordi();
+				ordi.setStrategie(strategie);
+
+			}
+		});
+		
+		
 		
 	}
 
