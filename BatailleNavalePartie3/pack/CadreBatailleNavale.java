@@ -15,6 +15,8 @@ public class CadreBatailleNavale extends JMenuBar {
 	JMenuBar Strategie;
 	JMenu Menu;
 	JMenuItem m1, m2, m3;
+	InterfaceStrategie strategie = null;
+	Ordi ordi = new Ordi();
 	/*
 	 * Create notre Menu pour choisir 
 	 * la difficulte de lordinateur
@@ -39,23 +41,21 @@ public class CadreBatailleNavale extends JMenuBar {
 		m1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				InterfaceStrategie strategie = new OrdiStrategieDebutant();
+				strategie = new OrdiStrategieDebutant();
 			}
 		});
 		m2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				InterfaceStrategie strategie = new OrdiStrategieIntermediaire();
-				Ordi ordi = new Ordi();
+				strategie = new OrdiStrategieIntermediaire();
 				ordi.setStrategie(strategie);
 			}
 		}); 	
 		m3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				InterfaceStrategie strategie = new OrdiStrategieAvance();
-				Ordi ordi = new Ordi();
+				strategie = new OrdiStrategieAvance();
 				ordi.setStrategie(strategie);
 
 			}
