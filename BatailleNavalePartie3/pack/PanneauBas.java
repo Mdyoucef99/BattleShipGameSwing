@@ -21,12 +21,15 @@ public class PanneauBas extends JPanel {
     public boolean TourJoueur=false;
 
     int incrementorFlotteVisible=0;
+
     String buttonText= "Montrer flotte Ordinateur";
+
     public PanneauHaut refPanneauHaut;
 
     JButton buttonNouvellePartie = new JButton("Nouvelle Partie");
 
 	JButton buttonMontrerFlotte = new JButton(buttonText);
+
 
 	public PanneauBas(PanneauHaut panneauhaut,JFrame f)
 	{
@@ -45,7 +48,6 @@ public class PanneauBas extends JPanel {
 	    JPanel Container = new JPanel();
 
 	    JPanel Containerbutton = new JPanel();
-
 
 		buttonNouvellePartie.setBounds(50,100,95,30);
 		buttonMontrerFlotte.setBounds(50,100,95,30);
@@ -120,7 +122,6 @@ public class PanneauBas extends JPanel {
 								MontrerCaseToucheJoueur(c);
 								ordi.getStrategie().aviserTouche();
 
-
 							}
 
 
@@ -176,6 +177,8 @@ public class PanneauBas extends JPanel {
 	}
 
 
+
+	//Fonction qui s'occupe de montrer la flotte de l'ordi et aussi la cacher en changeant le texte du button
 	public void montrerFlotteOrdi()
 	{
 		UtilitaireGrilleGui.montrerFlotte(refPanneauHaut.getOrdi().getFlotte(), refPanneauHaut.paneauOrdiBottom);
@@ -195,6 +198,7 @@ public class PanneauBas extends JPanel {
 	}
 
 
+
 	public void CacherFlotteOrdi()
 	{
 		refPanneauHaut.paneauOrdiTop.setVisible(true);
@@ -208,10 +212,13 @@ public class PanneauBas extends JPanel {
 
 	}
 
+
+
 	      public boolean estClique()
 	      {
 		   return refPanneauHaut.paneauOrdiTop.caseEstCliquee();
 		  }
+
 
 
 		  public Coord getTirJoueur()
@@ -226,12 +233,15 @@ public class PanneauBas extends JPanel {
 		  }
 
 
+
 		  public void AfficherTirOrdi()
 		  {
 			  refPanneauHaut.paneauOrdiTop.setValeur(refPanneauHaut.paneauOrdiTop.getPosition(),Constantes.TOUCHE);
 			  refPanneauHaut.paneauOrdiBottom.copierEtatCases(refPanneauHaut.paneauOrdiTop);
 
 		  }
+
+
 
 		  public void MontrerCaseToucheJoueur(Coord c )
 		  {
@@ -241,12 +251,15 @@ public class PanneauBas extends JPanel {
 		  }
 
 
+
+
 		  public void MontrerCaseToucheOrdi()
 		  {
 				  refPanneauHaut.paneauOrdiTop.setCouleurFond(refPanneauHaut.paneauOrdiTop.getPosition(),Color.red);
 				  refPanneauHaut.paneauOrdiBottom.copierEtatCases(refPanneauHaut.paneauOrdiTop);
 
 		  }
+
 
 		  public void DesactiverCaseOrdi(Coord c)
 		  {

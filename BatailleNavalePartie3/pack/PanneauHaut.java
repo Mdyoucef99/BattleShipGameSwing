@@ -30,18 +30,16 @@ public class PanneauHaut extends JPanel{
 
 
 
-	public PanneauHaut(Ordi Ordi,Joueur joueur,JFrame f)
+	public PanneauHaut(Ordi Ordi,Joueur joueur,JFrame f) //Contructeur panneau haut
 	{
       this.joueur = joueur;
       this.Ordi = Ordi;
-
 	  initializeComponent(f);
 	}
 
 
-	public void initializeComponent(JFrame f)
+	public void initializeComponent(JFrame f) //Fonction qui s'occupe de initialiser et creer tous les components et ajouter cella au frame en parametre
 	{
-
 
 	 Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 	 Dimension Screen =  new Dimension(800,(int)(d.getHeight()*0.60));
@@ -63,9 +61,9 @@ public class PanneauHaut extends JPanel{
 	 CadreBatailleNavale menuStrategie =  new CadreBatailleNavale(this,f);
 
 
-	 paneauJoueur = new PanneauGrilleGui(Screen);
-	 paneauOrdiTop = new PanneauGrilleGui(Screen);
-	 paneauOrdiBottom= new PanneauGrilleGui(Screen);
+	 paneauJoueur = new PanneauGrilleGui(Screen);//Creation panneau Joueur
+	 paneauOrdiTop = new PanneauGrilleGui(Screen);//Creation panneau Ordi
+	 paneauOrdiBottom= new PanneauGrilleGui(Screen);//Creation copie du paneau Ordi
 
 
 	 playerPanel.setLayout(new BoxLayout(playerPanel,BoxLayout.PAGE_AXIS)); // create panel for player
@@ -81,21 +79,25 @@ public class PanneauHaut extends JPanel{
      OrdiPanel.add(OrdiPanelFlotte);
 
 
-     MainPannel.setLayout(new BoxLayout(MainPannel,BoxLayout.LINE_AXIS));
+     MainPannel.setLayout(new BoxLayout(MainPannel,BoxLayout.LINE_AXIS));//create main pannel for PanneauGrilleGui player and Ordi
      MainPannel.add(Box.createRigidArea(new Dimension(150,0)));
      MainPannel.add(playerPanel);
      MainPannel.add(Box.createRigidArea(new Dimension(5,0)));
      MainPannel.add(OrdiPanel);
 
-     MainPannel.add(menuStrategie,BoxLayout.LINE_AXIS);
+
+     MainPannel.add(menuStrategie,BoxLayout.LINE_AXIS);//Ajout menu strategie au main pannel
+
+
+
      panHaut.setLayout(new BorderLayout());
-     panHaut.add(MainPannel);
+     panHaut.add(MainPannel); //Ajout Main panneau au panneau Haut
 
 
         f.getContentPane().add(panHaut,BorderLayout.NORTH);//ajout du panneau au frame
 
-
 	}
+
 
 	public Joueur getJoueur()
 	{
