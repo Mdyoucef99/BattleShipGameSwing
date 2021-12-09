@@ -3,12 +3,9 @@ package pack;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,7 +28,6 @@ public class PanneauHaut extends JPanel{
 
 	 private Joueur joueur;
 
-	 private static String[] elementsCombo = {"Strategie","Debutant","Avance","Intermediaire"};
 
 
 	public PanneauHaut(Ordi Ordi,Joueur joueur,JFrame f)
@@ -64,7 +60,7 @@ public class PanneauHaut extends JPanel{
 
 	 JPanel OrdiPanelFlotte = new JPanel();
 
-     JPanel Strategie = new JPanel();
+	 CadreBatailleNavale menuStrategie =  new CadreBatailleNavale(this,f);
 
 
 	 paneauJoueur = new PanneauGrilleGui(Screen);
@@ -91,30 +87,9 @@ public class PanneauHaut extends JPanel{
      MainPannel.add(Box.createRigidArea(new Dimension(5,0)));
      MainPannel.add(OrdiPanel);
 
+     MainPannel.add(menuStrategie,BoxLayout.LINE_AXIS);
      panHaut.setLayout(new BorderLayout());
      panHaut.add(MainPannel);
-
-
-	 panHaut.add(Strategie,BorderLayout.NORTH);
-     Strategie.setPreferredSize(new Dimension(1920,25));
-
-     JComboBox comboBox = new JComboBox();
-
-		for(int i=0;i<elementsCombo.length;i++) {
-			comboBox.addItem(elementsCombo[i]);
-		}
-
-		comboBox.setPreferredSize(new Dimension(100,25));
-		comboBox.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-			}
-
-		});
-
-		Strategie.setLayout(new BorderLayout());
-		Strategie.add(comboBox,BorderLayout.LINE_START);
 
 
         f.getContentPane().add(panHaut,BorderLayout.NORTH);//ajout du panneau au frame

@@ -27,6 +27,7 @@ public class PanneauPrincipal extends JPanel {
 		 panneauhaut = new PanneauHaut(Ordi, joueur,frame);
 		 panneauBas= new PanneauBas(panneauhaut,frame);
 
+
 	}
 
 

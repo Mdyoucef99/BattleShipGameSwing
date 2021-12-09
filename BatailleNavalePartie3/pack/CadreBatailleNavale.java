@@ -7,24 +7,30 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 
 public class CadreBatailleNavale extends JMenuBar {
-	
+
 
 	JMenuBar Strategie;
 	JMenu Menu;
 	JMenuItem m1, m2, m3;
 	InterfaceStrategie strategie = null;
-	Ordi ordi = new Ordi();
+
+
+    PanneauHaut panneauHautref;
+
 	/*
-	 * Create notre Menu pour choisir 
+	 * Create notre Menu pour choisir
 	 * la difficulte de lordinateur
 	 */
-	public CadreBatailleNavale(JFrame f) {
+	public CadreBatailleNavale(PanneauHaut panneau, JFrame f) {
+
+		this.panneauHautref = panneau;
 		setMenuBar(f);
 	}
-	
+
+
+
 	public void setMenuBar(JFrame f) {
 		Strategie = new JMenuBar();
 		Menu = new JMenu("Strategie");
@@ -36,33 +42,41 @@ public class CadreBatailleNavale extends JMenuBar {
 		Menu.add(m3);
 		Strategie.add(Menu);
 		f.setJMenuBar(Strategie);
-		
-				
+
+
 		m1.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
+				Ordi ordi =  panneauHautref.getOrdi();
 				strategie = new OrdiStrategieDebutant();
+				ordi.setStrategie(strategie);
 			}
+
 		});
 		m2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				Ordi ordi =  panneauHautref.getOrdi();
 				strategie = new OrdiStrategieIntermediaire();
+
 				ordi.setStrategie(strategie);
 			}
-		}); 	
+		});
 		m3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Ordi ordi =  panneauHautref.getOrdi();
 				strategie = new OrdiStrategieAvance();
 				ordi.setStrategie(strategie);
 
 			}
 		});
-		
-		
-		
+
+
+
 	}
 
 }
