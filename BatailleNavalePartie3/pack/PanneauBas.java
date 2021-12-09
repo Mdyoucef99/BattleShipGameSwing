@@ -55,6 +55,10 @@ public class PanneauBas extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				JOptionPane.showMessageDialog(f,"La partie actuelle est annulée","Alert",JOptionPane.WARNING_MESSAGE);
+				reinitialiserPanneauOrdi();
+				RemettreEtatNouvellePartie();
 
 		        Runnable code = new Runnable()
 				{
@@ -62,8 +66,8 @@ public class PanneauBas extends JPanel {
 					int nombreTirOrdi=0;
 
 					@Override
-					public void run() {
-
+					public void run() {		
+							
 						Joueur joueur = refPanneauHaut.getJoueur();
 						Ordi ordi = refPanneauHaut.getOrdi();
 
@@ -267,7 +271,6 @@ public class PanneauBas extends JPanel {
 
 		  public void RemettreEtatNouvellePartie()
 		  {
-
 
 			  refPanneauHaut.getJoueur().genereNouvelleFlotte();
 			  refPanneauHaut.getOrdi().genereNouvelleFlotte();
