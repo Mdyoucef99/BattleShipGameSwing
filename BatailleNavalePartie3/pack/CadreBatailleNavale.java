@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class CadreBatailleNavale extends JMenuBar {
 
@@ -24,7 +25,6 @@ public class CadreBatailleNavale extends JMenuBar {
 	 * la difficulte de lordinateur
 	 */
 	public CadreBatailleNavale(PanneauHaut panneau, JFrame f) {
-
 		this.panneauHautref = panneau;
 		setMenuBar(f);
 	}
@@ -52,6 +52,8 @@ public class CadreBatailleNavale extends JMenuBar {
 				Ordi ordi =  panneauHautref.getOrdi();
 				strategie = new OrdiStrategieDebutant();
 				ordi.setStrategie(strategie);
+				JOptionPane.showMessageDialog(f,"Changement Ordi a Debutant","Alert",JOptionPane.WARNING_MESSAGE);
+
 			}
 
 		});
@@ -63,6 +65,7 @@ public class CadreBatailleNavale extends JMenuBar {
 				strategie = new OrdiStrategieIntermediaire();
 
 				ordi.setStrategie(strategie);
+				JOptionPane.showMessageDialog(f,"Changement Ordi a Intermediaire","Alert",JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		m3.addActionListener(new ActionListener() {
@@ -71,6 +74,8 @@ public class CadreBatailleNavale extends JMenuBar {
 				Ordi ordi =  panneauHautref.getOrdi();
 				strategie = new OrdiStrategieAvance();
 				ordi.setStrategie(strategie);
+
+				JOptionPane.showMessageDialog(f,"Changement Ordi a Avance","Alert",JOptionPane.WARNING_MESSAGE);
 
 			}
 		});
