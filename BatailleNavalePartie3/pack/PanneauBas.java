@@ -260,11 +260,13 @@ public class PanneauBas extends JPanel {
 		  }
 
 
-		  public void reinitialiserPanneauOrdi()
+		  public void reinitialiserPanneauOrdi()// probleme mineur je vais regarder ca lundi en pm il y a seulement une case qui est enlever
 		  {
-
 			  refPanneauHaut.paneauOrdiTop.resetEstClique();
 			  refPanneauHaut.paneauOrdiTop.reactiverCases();
+			  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauJoueur);
+			  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauOrdiBottom);
+			  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauOrdiTop);
 			  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
 
 		  }
