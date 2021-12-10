@@ -58,7 +58,7 @@ public class PanneauHaut extends JPanel{
 
 	 JPanel OrdiPanelFlotte = new JPanel();
 
-	 CadreBatailleNavale menuStrategie =  new CadreBatailleNavale(this,f);
+	 FramebatailleNavale menuStrategie =  new FramebatailleNavale(this,f);
 
 
 	 paneauJoueur = new PanneauGrilleGui(Screen);//Creation panneau Joueur
