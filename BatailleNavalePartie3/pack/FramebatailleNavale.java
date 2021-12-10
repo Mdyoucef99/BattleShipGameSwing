@@ -1,59 +1,87 @@
 package pack;
 
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-public class FramebatailleNavale extends JFrame {
+public class FramebatailleNavale extends JMenuBar {
 
 
-	public static void main(String[] args)
-	{
+	JMenuBar Strategie;
+	JMenu Menu;
+	JMenuItem m1, m2, m3;
+	InterfaceStrategie strategie = null;
 
-		EventQueue.invokeLater(new Runnable() {
+
+    PanneauHaut panneauHautref;
+
+	/*
+	 * Create notre Menu pour choisir
+	 * la difficulte de lordinateur
+	 */
+	public FramebatailleNavale(PanneauHaut panneau, JFrame f) {
+		this.panneauHautref = panneau;
+		setMenuBar(f);
+	}
+
+
+
+	public void setMenuBar(JFrame f) {
+		Strategie = new JMenuBar();
+		Menu = new JMenu("Strategie");
+		m1 = new JMenuItem("Debutant");
+		m2 = new JMenuItem("Intermediaire");
+		m3 = new JMenuItem("Avance");
+		Menu.add(m1);
+		Menu.add(m2);
+		Menu.add(m3);
+		Strategie.add(Menu);
+		f.setJMenuBar(Strategie);
+
+
+		m1.addActionListener(new ActionListener() {
+
 			@Override
-			public void run() {
+			public void actionPerformed(ActionEvent e) {
 
-				try {
+				Ordi ordi =  panneauHautref.getOrdi();
+				strategie = new OrdiStrategieDebutant();
+				ordi.setStrategie(strategie);
+				JOptionPane.showMessageDialog(f,"Changement Ordi a Debutant","Alert",JOptionPane.WARNING_MESSAGE);
 
-					FramebatailleNavale MainFrame = new FramebatailleNavale();//Creation du main frame
+			}
 
-					String s =  JOptionPane.showInputDialog(MainFrame,"Enter Name").toString(); // POP up pour assigner le nom du joueur
+		});
+		m2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 
-					Joueur mainplayer = new Joueur(s);//creation du nom du joueur
+				Ordi ordi =  panneauHautref.getOrdi();
+				strategie = new OrdiStrategieIntermediaire();
 
-					Ordi ordi = new Ordi();//creation de l'ordi
-
-					PanneauPrincipal panneau = new PanneauPrincipal(ordi, mainplayer, MainFrame); //creation du panneau
-
-					MainFrame.setVisible(true);
-					MainFrame.getContentPane().add(panneau);//Ajout du panneau principal dans le main frame
-					MainFrame.setTitle("Jeu Bataille Navale");
-
-
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				ordi.setStrategie(strategie);
+				JOptionPane.showMessageDialog(f,"Changement Ordi a Intermediaire","Alert",JOptionPane.WARNING_MESSAGE);
 			}
 		});
+		m3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Ordi ordi =  panneauHautref.getOrdi();
+				strategie = new OrdiStrategieAvance();
+				ordi.setStrategie(strategie);
+
+				JOptionPane.showMessageDialog(f,"Changement Ordi a Avance","Alert",JOptionPane.WARNING_MESSAGE);
+
+			}
+		});
+
+
+
 	}
-
-	/**
-	 * Create the frame.
-
-	 */
-	public FramebatailleNavale() {
-	/**
-		 * Launch the application.
-		 */
-		setSize(500,500);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-
-	}
-
 
 }
