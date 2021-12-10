@@ -57,10 +57,8 @@ public class PanneauBas extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				JOptionPane.showMessageDialog(f,"La partie actuelle est annulée","Alert",JOptionPane.WARNING_MESSAGE);
-				reinitialiserPanneauOrdi();
-				RemettreEtatNouvellePartie();
 
 		        Runnable code = new Runnable()
 				{
@@ -68,11 +66,14 @@ public class PanneauBas extends JPanel {
 					int nombreTirOrdi=0;
 
 					@Override
-					public void run() {		
-							
+					public void run() {
+
+						nombreTirOrdi=0;
+						nombretirJoueur=0;
 						Joueur joueur = refPanneauHaut.getJoueur();
 						Ordi ordi = refPanneauHaut.getOrdi();
 
+						RemettreEtatNouvellePartie();
 						montrerFlotteJoueur();
 
                         int nombre = UtilitaireFonctions.nbAlea(1,2);
@@ -95,7 +96,6 @@ public class PanneauBas extends JPanel {
 							{
 								if(estClique()==true) // Si le joueur a clique sur le panneau de ordi en haut
 								{
-
 								   nombretirJoueur++;
 								   AfficherTirOrdi();
 
@@ -123,11 +123,11 @@ public class PanneauBas extends JPanel {
 
 							if(joueur.flotteARecuTirQuiATouche(c))
 							{
+
 								MontrerCaseToucheJoueur(c);
 								ordi.getStrategie().aviserTouche();
 
 							}
-
 
 							TourJoueur=true;
 						}
@@ -224,7 +224,6 @@ public class PanneauBas extends JPanel {
 		  }
 
 
-
 		  public Coord getTirJoueur()
 		  {
 			  return refPanneauHaut.paneauOrdiTop.getPosition();
@@ -250,11 +249,9 @@ public class PanneauBas extends JPanel {
 		  public void MontrerCaseToucheJoueur(Coord c )
 		  {
 
-				  refPanneauHaut.paneauJoueur.setCouleurFond(c,Color.red);
+			refPanneauHaut.paneauJoueur.setCouleurFond(c,Color.red);
 
 		  }
-
-
 
 
 		  public void MontrerCaseToucheOrdi()
@@ -277,22 +274,24 @@ public class PanneauBas extends JPanel {
 		  {
 			  refPanneauHaut.paneauOrdiTop.resetEstClique();
 			  refPanneauHaut.paneauOrdiTop.reactiverCases();
-			  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauJoueur);
 			  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauOrdiBottom);
 			  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauOrdiTop);
-			  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
+			  refPanneauHaut.paneauOrdiBottom.copierEtatCases(refPanneauHaut.paneauOrdiTop);
 
 		  }
 
 		  public void RemettreEtatNouvellePartie()
 		  {
 
+			  reinitialiserPanneauOrdi();
+			  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauJoueur);
 			  refPanneauHaut.getJoueur().genereNouvelleFlotte();
 			  refPanneauHaut.getOrdi().genereNouvelleFlotte();
 			  montrerFlotteJoueur();
 			  CacherFlotteOrdi();
 
 		  }
+
 
 }
 
