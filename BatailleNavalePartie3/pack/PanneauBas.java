@@ -2,6 +2,7 @@ package pack;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -111,12 +112,12 @@ public class PanneauBas extends JPanel {
 								   refPanneauHaut.paneauOrdiTop.desactiverCase(getTirJoueur());
 								   TourJoueur=false;
 								}
+								nombretirJoueur++;
 							}
 
 							else if (TourJoueur==false)
 							{
 
-							nombreTirOrdi++;
 							Coord c = ordi.getStrategie().getTir();
 
 							AfficherTirJoueur(c);
@@ -165,16 +166,23 @@ public class PanneauBas extends JPanel {
 		});
 
 		Containerbutton.setSize(Screen);
-		Containerbutton.setLayout(new BoxLayout(Containerbutton,BoxLayout.LINE_AXIS));
+		
+		Containerbutton.setLayout(new BoxLayout(Containerbutton,BoxLayout.X_AXIS));
 
+		
 		Containerbutton.add(Box.createRigidArea(new Dimension((int)(d.getWidth()/2.0)-100,0)));
 		Containerbutton.add(buttonMontrerFlotte);
 		Containerbutton.add(Box.createRigidArea(new Dimension(5,0)));
 		Containerbutton.add(buttonNouvellePartie);
+		Containerbutton.add(Box.createRigidArea(new Dimension(0,340)));
+		
 
 		Container.setLayout(new BorderLayout());
 		Container.setSize(Screen);
 		Container.add(Containerbutton,BorderLayout.CENTER);
+		buttonMontrerFlotte.setAlignmentY(Component.CENTER_ALIGNMENT);
+		buttonNouvellePartie.setAlignmentY(Component.CENTER_ALIGNMENT);
+
 
 		f.getContentPane().add(Container,BorderLayout.SOUTH);
 
