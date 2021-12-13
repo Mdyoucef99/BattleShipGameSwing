@@ -112,21 +112,26 @@ public class PanneauBas extends JPanel {
 								   refPanneauHaut.paneauOrdiTop.desactiverCase(getTirJoueur());
 								   TourJoueur=false;
 								}
-								nombretirJoueur++;
+
 							}
 
 							else if (TourJoueur==false)
 							{
 
-							Coord c = ordi.getStrategie().getTir();
+							nombreTirOrdi++;
 
-							AfficherTirJoueur(c);
-
-							if(joueur.flotteARecuTirQuiATouche(c))
+							for(int i=0;i<2;i++)//L'ordinateur a le droit a 2 tirs
 							{
+								Coord c = ordi.getStrategie().getTir();//Ordinateur place son tir
 
-								MontrerCaseToucheJoueur(c);
-								ordi.getStrategie().aviserTouche();
+								AfficherTirJoueur(c);//tire afficher dans la case du joueur
+
+								if(joueur.flotteARecuTirQuiATouche(c))//si le tir a touche un navire du joueur
+								{
+									MontrerCaseToucheJoueur(c);//changer la couleur de la case du navire touche en rouge
+									ordi.getStrategie().aviserTouche();//aviser l'ordi que le tir a touche un navire
+
+								}
 
 							}
 
@@ -166,16 +171,16 @@ public class PanneauBas extends JPanel {
 		});
 
 		Containerbutton.setSize(Screen);
-		
+
 		Containerbutton.setLayout(new BoxLayout(Containerbutton,BoxLayout.X_AXIS));
 
-		
+
 		Containerbutton.add(Box.createRigidArea(new Dimension((int)(d.getWidth()/2.0)-100,0)));
 		Containerbutton.add(buttonMontrerFlotte);
 		Containerbutton.add(Box.createRigidArea(new Dimension(5,0)));
 		Containerbutton.add(buttonNouvellePartie);
-		Containerbutton.add(Box.createRigidArea(new Dimension(0,340)));
-		
+		Containerbutton.add(Box.createRigidArea(new Dimension(0,250)));
+
 
 		Container.setLayout(new BorderLayout());
 		Container.setSize(Screen);
@@ -191,117 +196,119 @@ public class PanneauBas extends JPanel {
 
 
 	//Fonction qui s'occupe de montrer la flotte de l'ordi et aussi la cacher en changeant le texte du button
-	public void montrerFlotteOrdi()
-	{
-		UtilitaireGrilleGui.montrerFlotte(refPanneauHaut.getOrdi().getFlotte(), refPanneauHaut.paneauOrdiBottom);
-		if(incrementorFlotteVisible%2==0)
+		public void montrerFlotteOrdi()
 		{
-			refPanneauHaut.paneauOrdiTop.setVisible(false);
+			UtilitaireGrilleGui.montrerFlotte(refPanneauHaut.getOrdi().getFlotte(), refPanneauHaut.paneauOrdiBottom);
+			if(incrementorFlotteVisible%2==0)
+			{
+				refPanneauHaut.paneauOrdiTop.setVisible(false);
 
-			buttonMontrerFlotte.setText("Cacher flotte Ordinateur");
+				buttonMontrerFlotte.setText("Cacher flotte Ordinateur");
 
+			}
+			else if (incrementorFlotteVisible%2==1)
+			{
+				refPanneauHaut.paneauOrdiTop.setVisible(true);
+				buttonMontrerFlotte.setText(buttonText);
+			}
+			incrementorFlotteVisible++;
 		}
-		else if (incrementorFlotteVisible%2==1)
+
+
+	       //Fonction qui s'occupe de cacher la flotte de l'ordinateur en affichant le panneau du haut
+		public void CacherFlotteOrdi()
 		{
 			refPanneauHaut.paneauOrdiTop.setVisible(true);
-			buttonMontrerFlotte.setText(buttonText);
 		}
-		incrementorFlotteVisible++;
-	}
+
+		//Fonction qui s'occupe de montrer la flotte du joueur
+		public void montrerFlotteJoueur()
+		{
+			UtilitaireGrilleGui.montrerFlotte(refPanneauHaut.getJoueur().getFlotte(), refPanneauHaut.paneauJoueur);
+			System.out.println("BUTTON PRESSED MONTRER FLOTTE JOUEUR");
+
+		}
+
+	          //fonction qui verifie si une case a ete clicker dans le panneau de l'ordi et retourne un boolean
+		      public boolean estClique()
+		      {
+			   return refPanneauHaut.paneauOrdiTop.caseEstCliquee();
+			  }
 
 
+		      //fonction qui retourne la cases clicker par le joueur
+			  public Coord getTirJoueur()
+			  {
+				  return refPanneauHaut.paneauOrdiTop.getPosition();
+			  }
 
-	public void CacherFlotteOrdi()
-	{
-		refPanneauHaut.paneauOrdiTop.setVisible(true);
-	}
+			  //fonction qui affiche le tir du joueur dans la grille de l'ordi
+			  public void AfficherTirJoueur(Coord c)
+			  {
+				  refPanneauHaut.paneauJoueur.setValeur(c,Constantes.TOUCHE);
 
-
-	public void montrerFlotteJoueur()
-	{
-		UtilitaireGrilleGui.montrerFlotte(refPanneauHaut.getJoueur().getFlotte(), refPanneauHaut.paneauJoueur);
-		System.out.println("BUTTON PRESSED MONTRER FLOTTE JOUEUR");
-
-	}
-
+			  }
 
 
-	      public boolean estClique()
-	      {
-		   return refPanneauHaut.paneauOrdiTop.caseEstCliquee();
-		  }
-
-
-		  public Coord getTirJoueur()
-		  {
-			  return refPanneauHaut.paneauOrdiTop.getPosition();
-		  }
-
-		  public void AfficherTirJoueur(Coord c)
-		  {
-			  refPanneauHaut.paneauJoueur.setValeur(c,Constantes.TOUCHE);
-
-		  }
-
-
-
-		  public void AfficherTirOrdi()
-		  {
-			  refPanneauHaut.paneauOrdiTop.setValeur(refPanneauHaut.paneauOrdiTop.getPosition(),Constantes.TOUCHE);
-			  refPanneauHaut.paneauOrdiBottom.copierEtatCases(refPanneauHaut.paneauOrdiTop);
-
-		  }
-
-
-
-		  public void MontrerCaseToucheJoueur(Coord c )
-		  {
-
-			refPanneauHaut.paneauJoueur.setCouleurFond(c,Color.red);
-
-		  }
-
-
-		  public void MontrerCaseToucheOrdi()
-		  {
-				  refPanneauHaut.paneauOrdiTop.setCouleurFond(refPanneauHaut.paneauOrdiTop.getPosition(),Color.red);
+	        //fonction qui affiche le tir de l'ordi dans la grille de l'ordi  et sa copie
+			  public void AfficherTirOrdi()
+			  {
+				  refPanneauHaut.paneauOrdiTop.setValeur(refPanneauHaut.paneauOrdiTop.getPosition(),Constantes.TOUCHE);
 				  refPanneauHaut.paneauOrdiBottom.copierEtatCases(refPanneauHaut.paneauOrdiTop);
 
-		  }
+			  }
 
 
-		  public void DesactiverCaseOrdi(Coord c)
-		  {
-			  refPanneauHaut.paneauOrdiTop.desactiverCase(c);
-			  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
+	         //foncion qui afficher le tir de l'ordi dans la grille du joueur si le tir touche un navire
+			  public void MontrerCaseToucheJoueur(Coord c )
+			  {
 
-		  }
+				refPanneauHaut.paneauJoueur.setCouleurFond(c,Color.red);
+
+			  }
+
+			 //foncion qui afficher le tir du joueur  dans la grille de  l'ordi si le tir touche un navire et dans sa copie
+			  public void MontrerCaseToucheOrdi()
+			  {
+					  refPanneauHaut.paneauOrdiTop.setCouleurFond(refPanneauHaut.paneauOrdiTop.getPosition(),Color.red);
+					  refPanneauHaut.paneauOrdiBottom.copierEtatCases(refPanneauHaut.paneauOrdiTop);
+
+			  }
+
+	         //Fonction qui desactive la case dans la grille de l'ordi
+			  public void DesactiverCaseOrdi(Coord c)
+			  {
+				  refPanneauHaut.paneauOrdiTop.desactiverCase(c);
+				  refPanneauHaut.paneauOrdiTop.copierEtatCases(refPanneauHaut.paneauOrdiBottom);
+
+			  }
+
+	         //Focntion qui reinitialise la grille de l'ordi
+			  public void reinitialiserPanneauOrdi()//
+			  {
+				  refPanneauHaut.paneauOrdiTop.resetEstClique();
+				  refPanneauHaut.paneauOrdiTop.reactiverCases();
+				  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauOrdiBottom);
+				  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauOrdiTop);
+				  refPanneauHaut.paneauOrdiBottom.copierEtatCases(refPanneauHaut.paneauOrdiTop);
+
+			  }
 
 
-		  public void reinitialiserPanneauOrdi()// probleme mineur je vais regarder ca lundi en pm il y a seulement une case qui est enlever
-		  {
-			  refPanneauHaut.paneauOrdiTop.resetEstClique();
-			  refPanneauHaut.paneauOrdiTop.reactiverCases();
-			  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauOrdiBottom);
-			  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauOrdiTop);
-			  refPanneauHaut.paneauOrdiBottom.copierEtatCases(refPanneauHaut.paneauOrdiTop);
+			  //Fonction qui reset le jeu en entier
+			  public void RemettreEtatNouvellePartie()
+			  {
+				  refPanneauHaut.getJoueur().genereNouvelleFlotte();
+				  refPanneauHaut.getOrdi().genereNouvelleFlotte();
+				  reinitialiserPanneauOrdi();
+				  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauJoueur);
+				  montrerFlotteJoueur();
+				  CacherFlotteOrdi();
 
-		  }
-
-		  public void RemettreEtatNouvellePartie()
-		  {
-
-			  reinitialiserPanneauOrdi();
-			  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauJoueur);
-			  refPanneauHaut.getJoueur().genereNouvelleFlotte();
-			  refPanneauHaut.getOrdi().genereNouvelleFlotte();
-			  montrerFlotteJoueur();
-			  CacherFlotteOrdi();
-
-		  }
+			  }
 
 
-}
+	}
 
 
 
