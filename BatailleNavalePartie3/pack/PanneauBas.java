@@ -185,8 +185,8 @@ public class PanneauBas extends JPanel {
 		Container.setLayout(new BorderLayout());
 		Container.setSize(Screen);
 		Container.add(Containerbutton,BorderLayout.CENTER);
-		buttonMontrerFlotte.setAlignmentY(Component.CENTER_ALIGNMENT);
-		buttonNouvellePartie.setAlignmentY(Component.CENTER_ALIGNMENT);
+		Container.setAlignmentY(Component.CENTER_ALIGNMENT);
+
 
 
 		f.getContentPane().add(Container,BorderLayout.SOUTH);
