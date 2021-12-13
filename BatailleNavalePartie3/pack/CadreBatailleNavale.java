@@ -8,6 +8,14 @@ import javax.swing.JOptionPane;
 public class CadreBatailleNavale extends JFrame {
 
 
+	/*
+	 * Auteur du projet :
+	 * Auteur : Youcef mekki daouadji
+     * Auteur : Rada Leng
+     * Auteur : Antoine Bolduc
+
+	 * */
+
 	public static void main(String[] args)
 	{
 

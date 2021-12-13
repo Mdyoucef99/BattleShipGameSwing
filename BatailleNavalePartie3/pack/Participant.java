@@ -29,7 +29,6 @@ public class Participant extends Flotte implements InterfaceParticipant
 	@Override
 	public boolean jeuEstTermine() {
 
-
 		return flotteparticipant.jeuEstTermine();
 
 	}
