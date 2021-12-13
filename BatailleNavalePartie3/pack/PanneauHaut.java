@@ -1,6 +1,7 @@
 package pack;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -58,7 +59,7 @@ public class PanneauHaut extends JPanel{
 
 	 JPanel OrdiPanelFlotte = new JPanel();
 
-	 CadreBatailleNavale menuStrategie =  new CadreBatailleNavale(this,f);
+	 FramebatailleNavale menuStrategie =  new FramebatailleNavale(this,f);
 
 
 	 paneauJoueur = new PanneauGrilleGui(Screen);//Creation panneau Joueur
@@ -85,6 +86,7 @@ public class PanneauHaut extends JPanel{
      MainPannel.add(Box.createRigidArea(new Dimension(5,0)));
      MainPannel.add(OrdiPanel);
 
+     MainPannel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
      MainPannel.add(menuStrategie,BoxLayout.LINE_AXIS);//Ajout menu strategie au main pannel
 

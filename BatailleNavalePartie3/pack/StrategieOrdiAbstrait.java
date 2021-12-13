@@ -18,6 +18,7 @@ import java.util.Vector;
 
 public abstract class StrategieOrdiAbstrait implements InterfaceStrategie  {
 
+
 	// Retient les coups joués dans une collection.
 	private Vector<Coord> tabTirsJoues =  new Vector<Coord> ();
 
