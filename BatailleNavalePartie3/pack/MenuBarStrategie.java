@@ -9,7 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 
-public class FramebatailleNavale extends JMenuBar {
+public class MenuBarStrategie extends JMenuBar {
 
 
 	JMenuBar Strategie;
@@ -25,7 +25,7 @@ public class FramebatailleNavale extends JMenuBar {
 	 * Create notre Menu pour choisir
 	 * la difficulte de lordinateur
 	 */
-	public FramebatailleNavale(PanneauHaut panneau, JFrame f) {
+	public MenuBarStrategie(PanneauHaut panneau, JFrame f) {
 		this.panneauHautref = panneau;
 		setMenuBar(f);
 	}

@@ -30,7 +30,6 @@ public class PanneauHaut extends JPanel{
 	 private Joueur joueur;
 
 
-
 	public PanneauHaut(Ordi Ordi,Joueur joueur,JFrame f) //Contructeur panneau haut
 	{
       this.joueur = joueur;
@@ -59,7 +58,7 @@ public class PanneauHaut extends JPanel{
 
 	 JPanel OrdiPanelFlotte = new JPanel();
 
-	 FramebatailleNavale menuStrategie =  new FramebatailleNavale(this,f);
+	 MenuBarStrategie menuStrategie =  new MenuBarStrategie(this,f);
 
 
 	 paneauJoueur = new PanneauGrilleGui(Screen);//Creation panneau Joueur

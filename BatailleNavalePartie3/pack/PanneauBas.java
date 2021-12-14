@@ -120,10 +120,7 @@ public class PanneauBas extends JPanel {
 
 							nombreTirOrdi++;
 
-							for(int i=0;i<2;i++)//L'ordinateur a le droit a 2 tirs
-							{
 								Coord c = ordi.getStrategie().getTir();//Ordinateur place son tir
-
 								AfficherTirJoueur(c);//tire afficher dans la case du joueur
 
 								if(joueur.flotteARecuTirQuiATouche(c))//si le tir a touche un navire du joueur
@@ -133,7 +130,7 @@ public class PanneauBas extends JPanel {
 
 								}
 
-							}
+
 
 							TourJoueur=true;
 						}
@@ -171,10 +168,7 @@ public class PanneauBas extends JPanel {
 		});
 
 		Containerbutton.setSize(Screen);
-
 		Containerbutton.setLayout(new BoxLayout(Containerbutton,BoxLayout.X_AXIS));
-
-
 		Containerbutton.add(Box.createRigidArea(new Dimension((int)(d.getWidth()/2.0)-100,0)));
 		Containerbutton.add(buttonMontrerFlotte);
 		Containerbutton.add(Box.createRigidArea(new Dimension(5,0)));
@@ -301,11 +295,19 @@ public class PanneauBas extends JPanel {
 				  refPanneauHaut.getJoueur().genereNouvelleFlotte();
 				  refPanneauHaut.getOrdi().genereNouvelleFlotte();
 				  reinitialiserPanneauOrdi();
-				  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauJoueur);
+				  reinitialiserPanneauJoueur();
 				  montrerFlotteJoueur();
 				  CacherFlotteOrdi();
 
 			  }
+			  //Focntion qui reinitialise la grille du joueur
+			 public void  reinitialiserPanneauJoueur()
+			  {
+				  refPanneauHaut.paneauJoueur.resetEstClique();
+				  refPanneauHaut.paneauJoueur.reactiverCases();
+				  UtilitaireGrilleGui.reinitialiserGui(refPanneauHaut.paneauJoueur);
+			  }
+
 
 
 	}
